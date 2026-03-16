@@ -196,11 +196,23 @@ a:focus {
 }
 
 .stage {
-  width: 45rem;
+  max-width: 45rem;
   min-width: 320px;
-  padding: 0 1rem;
+  padding: 0 2rem;
   margin: 1em auto 3em;
   flex: 1;
+}
+
+@media (min-width: 768px) {
+  .stage {
+    min-width: 35rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stage {
+    min-width: 45rem;
+  }
 }
 
 .post-card-list {
