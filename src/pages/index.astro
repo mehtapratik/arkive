@@ -1,0 +1,11 @@
+---
+import { getLastNPosts } from "../lib/tags";
+import Frame from "../layouts/Frame.astro";
+import { PostCardList } from "../components/PostCardList";
+
+const lastPosts = await getLastNPosts(100);
+---
+
+<Frame pageClass="page-home">
+	<PostCardList posts={lastPosts} headingLevel={2} />
+</Frame>

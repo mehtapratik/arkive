@@ -1,0 +1,42 @@
+---
+import Frame from "../../layouts/Frame.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import TagList from "../../components/TagList.astro";
+import { Reflection } from "../../components/Reflection";
+import { Figure } from "../../components/Figure";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post: CollectionEntry<"blog">) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const { title, tags, date } = Astro?.props?.post?.data ?? {};
+---
+
+<Frame pageClass="page-blog">
+  <article>
+    <h1 class="page-blog__title">{title}</h1>
+    <div class="page-blog__meta">
+      <small>
+        Posted on {date.toDateString()}
+      </small>
+      <small>
+        under <TagList tags={tags} />
+      </small>
+    </div>
+    <section class="page-blog__content">
+      <Content components={{ Reflection, Figure }} />
+    </section>
+  </article>
+</Frame>

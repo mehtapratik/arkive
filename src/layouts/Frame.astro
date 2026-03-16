@@ -1,0 +1,29 @@
+---
+import Head from "../components/Head.astro";
+import RootLayout from "./Root.astro";
+
+const {
+   title = "Arkive",
+   author = "Pratik Mehta",
+   pageClass = "",
+} = Astro.props;
+---
+
+<RootLayout {...Astro.props}>
+   <header class="site-header">
+      <h1 class="site-title"><a href="/">{title}</a></h1>
+      <nav class="site-nav">
+         <a href="/">Blog</a>
+         <a href="/tags/">Tags</a>
+      </nav>
+   </header>
+   <main class={`stage ${pageClass}`}>
+      <slot />
+   </main>
+   <footer class="site-footer">
+      <p class="site-footer-text">
+         Copyright © {new Date().getFullYear()}
+         {author}. All rights reserved.
+      </p>
+   </footer>
+</RootLayout>

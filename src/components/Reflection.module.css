@@ -1,0 +1,23 @@
+.reflection {
+    display: flex;
+    gap: 1rem;
+    background-color: #efefef;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    margin-bottom: 1em;
+    font-family: var(--font-sans-serif);
+    font-weight: 450;
+}
+
+
+.reflection__icon {
+    font-size: 2rem;
+}
+
+.reflection__content {
+    flex: 1;
+}
+
+.reflection__content > :last-child {
+    margin-bottom: 0;
+}

@@ -1,0 +1,9 @@
+---
+interface Props {
+    name: string;
+    count?: number;
+}
+const { name, count } = Astro.props;
+---
+
+<a href={`/tags/${name}/`}>{name}{count && <span>({count})</span>}</a>

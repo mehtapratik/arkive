@@ -1,0 +1,8 @@
+.figure {
+   padding: 0 0.25em;
+   border-radius: 0.1em;
+   background-color: #efefef;
+   display: inline-flex;
+   align-items: center;
+   gap: 0.1em;
+}

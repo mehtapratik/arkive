@@ -1,0 +1,14 @@
+---
+import Head from "../components/Head.astro";
+---
+
+<html>
+  <head>
+    <Head {...Astro.props} />
+  </head>
+  <body>
+    <div class="page">
+      <slot />
+    </div>
+  </body>
+</html>

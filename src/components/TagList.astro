@@ -1,0 +1,29 @@
+---
+import Tag from "./Tag.astro";
+
+interface Props {
+    tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+{
+    tags && tags.length > 0 && (
+        <span>
+            {tags.length === 1 && <Tag name={tags[0]} />}
+            {tags.length === 2 &&
+                <Tag name={tags[0]} /> <span> and</span> <Tag name={tags[1]} />}
+            {tags.length > 2 &&
+                tags.map((tag, index) => {
+                    if (index === tags.length - 1) {
+                        return <Tag name={tag} />;
+                    }
+                    if (index === tags.length - 2) {
+                        return <Tag name={tag} /><span>, and </span>;
+                    }
+                    return <Tag name={tag} /><span>, </span>;
+                })}
+        </span>
+    )
+}

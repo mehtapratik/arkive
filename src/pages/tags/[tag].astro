@@ -1,0 +1,39 @@
+---
+import Frame from "../../layouts/Frame.astro";
+import { getPostsByTag } from "../../lib/tags";
+import { type CollectionEntry } from "astro:content";
+import { PostCardList } from "../../components/PostCardList";
+
+interface Props {
+  tag: string;
+}
+
+export async function getStaticPaths() {
+  const { tagMap } = await getPostsByTag();
+
+  // Build a path for each tag
+  return Array.from(tagMap.keys()).map((tag) => ({
+    params: { tag },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props as Props;
+const { tagMap } = await getPostsByTag();
+
+// Posts for the current tag (normalized the same way as in getPostsByTag)
+const postsForTag = (tagMap.get(tag.toLowerCase()) ??
+  []) as CollectionEntry<"blog">[];
+---
+
+<Frame pageClass="page-tag">
+  <h1 class="page-tag__title">{tag}</h1>
+
+  {
+    postsForTag.length === 0 ? (
+      <p>No posts found for this tag.</p>
+    ) : (
+      <PostCardList posts={postsForTag} headingLevel={2} />
+    )
+  }
+</Frame>
