@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'General Sans';
-  src: url('../../public/fonts/GeneralSans-Variable.woff2') format('woff2'),
-    url('../../public/fonts/GeneralSans-Variable.woff') format('woff'),
-    url('../../public/fonts/GeneralSans-Variable.ttf') format('truetype');
+  src: url('../fonts/GeneralSans-Variable.woff2') format('woff2'),
+    url('../fonts/GeneralSans-Variable.woff') format('woff'),
+    url('../fonts/GeneralSans-Variable.ttf') format('truetype');
   font-weight: 100 900;
   font-display: swap;
   font-style: normal;
@@ -10,9 +10,9 @@
 
 @font-face {
   font-family: 'General Sans';
-  src: url('../../public/fonts/GeneralSans-VariableItalic.woff2') format('woff2'),
-    url('../../public/fonts/GeneralSans-VariableItalic.woff') format('woff'),
-    url('../../public/fonts/GeneralSans-VariableItalic.ttf') format('truetype');
+  src: url('../fonts/GeneralSans-VariableItalic.woff2') format('woff2'),
+    url('../fonts/GeneralSans-VariableItalic.woff') format('woff'),
+    url('../fonts/GeneralSans-VariableItalic.ttf') format('truetype');
   font-weight: 100 900;
   font-display: swap;
   font-style: italic;
@@ -21,9 +21,9 @@
 
 @font-face {
   font-family: 'Sentient';
-  src: url('../../public/fonts/Sentient-Variable.woff2') format('woff2'),
-    url('../../public/fonts/Sentient-Variable.woff') format('woff'),
-    url('../../public/fonts/Sentient-Variable.ttf') format('truetype');
+  src: url('../fonts/Sentient-Variable.woff2') format('woff2'),
+    url('../fonts/Sentient-Variable.woff') format('woff'),
+    url('../fonts/Sentient-Variable.ttf') format('truetype');
   font-weight: 200 700;
   font-display: swap;
   font-style: normal;
@@ -31,9 +31,9 @@
 
 @font-face {
   font-family: 'Sentient';
-  src: url('../../public/fonts/Sentient-VariableItalic.woff2') format('woff2'),
-    url('../../public/fonts/Sentient-VariableItalic.woff') format('woff'),
-    url('../../public/fonts/Sentient-VariableItalic.ttf') format('truetype');
+  src: url('../fonts/Sentient-VariableItalic.woff2') format('woff2'),
+    url('../fonts/Sentient-VariableItalic.woff') format('woff'),
+    url('../fonts/Sentient-VariableItalic.ttf') format('truetype');
   font-weight: 200 700;
   font-display: swap;
   font-style: italic;
