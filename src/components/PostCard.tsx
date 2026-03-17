@@ -13,13 +13,13 @@ export function PostCard ( { post, headingLevel }: PostCardProps ) {
       <section className="post-card">
          <Title className="post-card__title"><a href={`/blog/${post.slug}/`}>{post.data.title}</a></Title>
          <div className="post-card__meta">
-            <small className="post-card__date">
+            <span className="post-card__date">
                Posted on {post.data.date.toDateString()}
-            </small>
+            </span>
             {' '}
-            <small className="post-card__tags">
+            <span className="post-card__tags">
                under {joinTags(post.data.tags, true)}
-            </small>
+            </span>
          </div>
          <p className="post-card__excerpt">{post.data.excerpt}</p>
       </section>

@@ -28,10 +28,10 @@ const { title, tags, date } = Astro?.props?.post?.data ?? {};
   <article>
     <h1 class="page-blog__title">{title}</h1>
     <div class="page-blog__meta">
-      <small>
+      <span class="page-blog__date">
         Posted on {date.toDateString()}
-      </small>
-      <small>
+      </span>
+      <span class="page-blog__tags">
         under <TagList tags={tags} />
       </small>
     </div>

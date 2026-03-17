@@ -1,4 +1,3 @@
-import pagefind from "astro-pagefind";
 // @ts-check
 import { defineConfig } from 'astro/config';
 
@@ -8,5 +7,5 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), mdx(), markdoc(), pagefind()]
+  integrations: [react(), mdx(), markdoc()]
 });

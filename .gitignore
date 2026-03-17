@@ -1,3 +1,6 @@
+# obsidian vault
+.obsidian/
+
 # build output
 dist/
 # generated types
