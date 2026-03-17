@@ -61,6 +61,16 @@
   margin: 0;
 }
 
+html {
+  font-size: 20px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+}
+
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -198,7 +208,7 @@ a:focus {
 .stage {
   max-width: 45rem;
   min-width: 320px;
-  padding: 0 2rem;
+  padding: 0 1rem;
   margin: 1em auto 3em;
   flex: 1;
 }
