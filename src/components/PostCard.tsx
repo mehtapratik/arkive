@@ -8,7 +8,7 @@ export interface PostCardProps {
    headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 export function PostCard ( { post, headingLevel }: PostCardProps ) {
-   const Title = (headingLevel ? `h${headingLevel}` : 'div') as keyof JSX.IntrinsicElements;
+   const Title = ( headingLevel ? `h${ headingLevel }` : 'div' ) as keyof JSX.IntrinsicElements;
    return (
       <section className="post-card">
          <Title className="post-card__title"><a href={`/blog/${post.slug}/`}>{post.data.title}</a></Title>
