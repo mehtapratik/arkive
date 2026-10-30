@@ -42,5 +42,5 @@ Foundation says _how_, platform says _what_, features say _which_. The placement
 - `pnpm-workspace.yaml` globs `packages/platform/*`.
 - `pnpm db:migrate` runs each package's migrations in dependency order: `core`, then platform, then features and ops.
 - **Overrides the PRD and spec:** the Rich Live Link component lives in `@sidekick/synergy`, not in `packages/ui`. It knows resolved links, states and dots, and `ui` (foundation) can't import Synergy's types. It builds on `ui` primitives.
-- **Overrides the PRD and spec:** "module" is renamed **provider**: the package that registered an entity type. Resolver and renderer calls are batched per provider.
+- **Overrides the PRD and spec:** "module" is renamed **provider**: the package that registered an entity type. Resolver and renderer calls are batched per provider. Each type registration names the feature whose entitlement gates it (the mock notes and tasks: provider `ops`, entitlement `sandbox`); the mapping lives in code, not in rows. Feature flags (rollout gating) are a separate foundation package, built when something first needs one.
 - **Supersedes** points 1 and 2 of [[03-system-design/functional-design/02-global-tagging-and-linking/02-design-constraints|Design constraints]] (entity types in the registry, edges in `core`).
