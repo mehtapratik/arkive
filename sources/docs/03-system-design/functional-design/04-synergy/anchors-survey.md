@@ -115,14 +115,14 @@ Operation-based anchors (option 4, or 5 with Yjs) are exact only for edits that 
 
 ## Link shapes
 
-One relationship row covers every combination of where a link starts and where it lands. The source side is either the whole entity or a mention (a mark in the source's content). The target side is either the whole entity (`to_anchor` empty) or a passage (`to_anchor` set).
+One relationship row covers every combination of where a link starts and where it lands. On the source side the link is held by a cited mention (a field or links panel) or by a direct or alias mention in the source's content. The target side is either the whole entity (`to_anchor` empty) or a passage (`to_anchor` set).
 
 | Shape              | Example                                                                                        | Source side                        | Target side                       |
 | ------------------ | ---------------------------------------------------------------------------------------------- | ---------------------------------- | --------------------------------- |
-| Entity to entity   | A plan's links panel lists a PRD                                                               | no mention                         | `to_anchor` empty                 |
+| Entity to entity   | A plan's links panel lists a PRD                                                               | cited mention                      | `to_anchor` empty                 |
 | Mention to entity  | "In continuation to my friend's previous article" in Doc A links Doc B                         | link mark in A carrying the rel id | `to_anchor` empty                 |
 | Mention to passage | "identified in response to the conclusion made in" in Doc A links the conclusion sentence of B | link mark in A carrying the rel id | anchor mark in B, `to_anchor` set |
-| Entity to passage  | Doc A's `related-to` field links a passage of Doc B                                            | no mention                         | anchor mark in B, `to_anchor` set |
+| Entity to passage  | Doc A's `related-to` field links a passage of Doc B                                            | cited mention                      | anchor mark in B, `to_anchor` set |
 
 **Three kinds of mention** (Pratik, 2026-10-30): a **direct mention** shows the link itself (minimal, inline, card or preview; display type belongs to the mention); an **alias mention** lets the author's own words carry the link; a **cited mention** holds the link in a field or a links panel, outside the content. A link lives while its source mentions it in any of the three ways, and is soft-deleted when the source drops its last one. Target mentions never keep a link alive.
 
