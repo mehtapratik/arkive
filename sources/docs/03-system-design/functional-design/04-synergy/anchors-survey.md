@@ -113,6 +113,19 @@ Operation-based anchors (option 4, or 5 with Yjs) are exact only for edits that 
 - A bot must send back marks it doesn't understand. One that doesn't gets `passage_referenced` with the quotes, never silent loss.
 - Cut and paste as two separate saves looks like a removal in between. The editor should hold the save, or autosave gets refused until the paste lands. Handle it in the editor lesson.
 
+## Link shapes
+
+One relationship row covers every combination of where a link starts and where it lands. The source side is either the whole entity or a mention (a mark in the source's content). The target side is either the whole entity (`to_anchor` empty) or a passage (`to_anchor` set).
+
+| Shape              | Example                                                                                        | Source side                        | Target side                       |
+| ------------------ | ---------------------------------------------------------------------------------------------- | ---------------------------------- | --------------------------------- |
+| Entity to entity   | A plan's links panel lists a PRD                                                               | no mention                         | `to_anchor` empty                 |
+| Mention to entity  | "In continuation to my friend's previous article" in Doc A links Doc B                         | link mark in A carrying the rel id | `to_anchor` empty                 |
+| Mention to passage | "identified in response to the conclusion made in" in Doc A links the conclusion sentence of B | link mark in A carrying the rel id | anchor mark in B, `to_anchor` set |
+| Entity to passage  | Doc A's `related-to` field links a passage of Doc B                                            | no mention                         | anchor mark in B, `to_anchor` set |
+
+The relationship records its **origin**: `mention` when it was made by selecting text, `entity` when it was made from a field, a links panel or the API without a mention. Only a `mention` relationship is removed when its source loses its last mention. An `entity` relationship is removed only by an explicit unlink (clearing the field calls unlink). Origin is stored from the first row, because it can't be worked out later. A mention added to an `entity` relationship doesn't change its origin.
+
 ## Consequences for the plan
 
 - Phase 3 stores `to_anchor` as id plus quote, adds the `(to_id, to_anchor_id)` index, and builds the save call with `anchorsGone` and `mentionsGone`. Mock note bodies are minimal Tiptap JSON, so the tests can remove anchors and mentions.
