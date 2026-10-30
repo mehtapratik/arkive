@@ -42,3 +42,12 @@ depends_on:
 > **No graph database.** This is a graph _pattern_ on plain Postgres — sufficient at MVP scale. If Sidekick grows to hundreds/thousands of users, `GraphRepository` is the swap boundary for a dedicated graph engine. See architecture §5.3.
 
 ---
+
+## Handover from system design
+
+> [!note]
+> The task table above predates the Synergy PRD and is rewritten as lessons after the system-design session. These items come out of that session and must become tasks.
+
+- **Platform layer** ([[06-decisions/technical/platform-layer|decision]], [[03-system-design/non-functional/monorepo/dependency-flow|dependency flow]] 1.2.0). Create `packages/platform/synergy`. Add `packages/platform/*` to `pnpm-workspace.yaml`. Add the `platform` element type to `eslint.config.js` above the `packages/*` catch-all, with policies: app, registry, feature and ops may import platform; platform may import only foundation; platform packages may not import each other. Prove the rule through `pnpm lint` inside a package, with one allowed and one refused import.
+- **Per-package migrations.** `pnpm db:migrate` runs `core`, then platform, then features and ops, each with its own Drizzle config and migrations table.
+- **`provider`, not `module`,** in the entity index schema and every API field.

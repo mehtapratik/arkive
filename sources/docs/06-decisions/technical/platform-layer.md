@@ -1,0 +1,46 @@
+---
+publish: true
+id: decision.technical.platform-layer
+created: 2026-10-30
+kind: decision
+version: 1.0.0
+tags:
+   - decision
+   - technical
+   - architecture-decision
+   - monorepo
+   - synergy
+status: accepted
+applies_to:
+   - "[[03-system-design/non-functional/monorepo/dependency-flow]]"
+   - "[[02-prd/03-features/01-synergy/00.prd.features.synergy.overview]]"
+---
+
+## What
+
+A platform layer sits between features and the foundation: `packages/platform/*`, one package per shared service. Synergy is the first, `packages/platform/synergy` (`@sidekick/synergy`). It owns the entity index, version log, relationships, relation vocabulary, tags, outbox and their rules, the resolver and renderer contracts, and the Rich Live Link component. `packages/core` keeps the DB client and RLS, auth, the API guard, entitlements and logging.
+
+Foundation says _how_, platform says _what_, features say _which_. The placement rule is in [[03-system-design/non-functional/monorepo/dependency-flow|Dependency flow]].
+
+## Why
+
+- **Each package owns its migrations** ([[03-system-design/non-functional/database/migration|Migration]]). Phase 3 needs several migration streams anyway, because the mock note and task modules have tables of their own.
+- **Cost to Add Later.** Moving TypeScript out of `core` later is a mechanical refactor. Moving tables out of `core`'s Drizzle migration history is not: the new package's drizzle-kit would try to create them again unless its snapshot is built by hand. The cheap moment to choose an owner is before the first migration.
+- **It settles where the contracts live** ([[02-prd/03-features/01-synergy/research/05-resolver-contract-home|research 05]]). Features import the resolver and renderer contracts from Synergy, as Backstage modules import from a separate catalog "node" package. The registry or the app builds the map. `core` never imports either.
+- **`core` stays small** instead of turning into "everything shared".
+- **One package per service, not one `platform` package.** In a single package, boundaries rules don't check imports between services, and unrelated services would share one migration history and one test suite.
+
+## Options not taken
+
+- **Synergy inside `packages/core`** (the PRD's first assumption). It works, and provider and type stay plain strings. It loses on the migration point above.
+- **The feature registry owns the rows.** The registry sits above features, so a feature couldn't write its own index row without injection, and it would mix a catalog that changes only on deploy with per-user data.
+- **Lazy indexing** (a row on first link, tag or search). It saves about 150 bytes per entity, breaks "search every module" (spec story 70), and makes every save first check whether the entity has a row yet.
+
+## Consequences
+
+- New `platform` element type in `eslint.config.js`, above the `packages/*` catch-all. Apps, the registry, features and ops may import platform packages, and platform packages may import only foundation packages. Platform packages may not import each other until a rule allows it.
+- `pnpm-workspace.yaml` globs `packages/platform/*`.
+- `pnpm db:migrate` runs each package's migrations in dependency order: `core`, then platform, then features and ops.
+- **Overrides the PRD and spec:** the Rich Live Link component lives in `@sidekick/synergy`, not in `packages/ui`. It knows resolved links, states and dots, and `ui` (foundation) can't import Synergy's types. It builds on `ui` primitives.
+- **Overrides the PRD and spec:** "module" is renamed **provider**: the package that registered an entity type. Resolver and renderer calls are batched per provider.
+- **Supersedes** points 1 and 2 of [[03-system-design/functional-design/02-global-tagging-and-linking/02-design-constraints|Design constraints]] (entity types in the registry, edges in `core`).
