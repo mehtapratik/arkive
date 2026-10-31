@@ -18,6 +18,10 @@ How Synergy is built. The PRD and [[02-prd/03-features/01-synergy/spec|spec]] sa
 
 ## Packages
 
+![[synergy-packages.svg|700]]
+
+An arrow means "imports". The features registry and the type packages register their linkable types with `synergy/server`; `apps/web` renders links with `synergy/react`. Only `foundation/core` talks to Postgres.
+
 | Package                                        | Holds                                                                                                                                                                    |
 | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `packages/core` (foundation)                   | DB client and RLS (`withRLS`), auth (`resolveApiCaller`), `withApiGuard`, entitlements, logging. Unchanged by Synergy.                                                   |
@@ -76,6 +80,10 @@ User content (titles, display names, labels, change notes, tag names) is stored 
 
 ## Tables (Synergy's migrations)
 
+![[synergy-tables.svg|700]]
+
+An arrow points from a table to the tables that hang off it. `relationships.from_id` and `to_id` are `entity_index` ids (left out of the drawing to keep it readable). The outbox and idempotency keys are not synced and are hard-deleted.
+
 **Every table:** client-generated UUIDs, `user_id`, `created_at`, `updated_at`, provenance (actor kind: person, system, agent or API key; actor id; reason), and RLS comparing `user_id = nullif(current_setting('app.current_user_id', true), '')::uuid`. Syncable tables soft-delete; every unique index on them is partial (`WHERE deleted_at IS NULL`), so a tombstone never blocks re-adding the same tag or saving the same item again. How tombstones stay visible to Synergy is in [Tombstones](#tombstones).
 
 - **`entity_index`**: id, provider, type, display name, optional title, status (`active`, `deprecated`, `superseded`), version, revision, `content_seq`, `edited_at`, `deleted_at`. "Deleted" is shown from `deleted_at`, not stored as a status, so a restore brings back whatever status the entity had. No external-reference columns ([[06-decisions/technical/capture-external-content|Capture external content]]).
@@ -112,6 +120,8 @@ Synergy must see its own tombstones: a deleted target still shows its name, "No 
 ## Write path
 
 A provider saves inside one `withRLS` transaction: it writes its own row, then calls Synergy in the same transaction.
+
+![[synergy-save.svg|360]]
 
 **Every Synergy write takes the per-user lock first**: `pg_advisory_xact_lock(hashtextextended(user_id::text, 0))`, before it reads or writes anything. That covers the delete block and the cycle check against each other (a delete and a new reference into the same target can't both commit), and one fixed lock order means no deadlocks between a save and a link create. For one user the contention is negligible.
 
