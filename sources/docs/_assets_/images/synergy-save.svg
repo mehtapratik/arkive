@@ -1,4 +1,44 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 1412" width="400" height="1412">
+  <style>
+    /* Follows the reader's light or dark setting, like the rest of arkive. */
+    [fill="#ffffff"] { fill: none; }
+    text[fill] { fill: #1b1b1b; font-size: 18px; font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+    @media (prefers-color-scheme: dark) {
+      [fill="#a5d8ff"] { fill: #173452; }
+      [stroke="#a5d8ff"] { stroke: #173452; }
+      [fill="#b2f2bb"] { fill: #173a22; }
+      [stroke="#b2f2bb"] { stroke: #173a22; }
+      [fill="#d0bfff"] { fill: #2b2350; }
+      [stroke="#d0bfff"] { stroke: #2b2350; }
+      [fill="#dee2e6"] { fill: #2a2d31; }
+      [stroke="#dee2e6"] { stroke: #2a2d31; }
+      [fill="#ffc9c9"] { fill: #47201f; }
+      [stroke="#ffc9c9"] { stroke: #47201f; }
+      [fill="#ffd8a8"] { fill: #45290f; }
+      [stroke="#ffd8a8"] { stroke: #45290f; }
+      [fill="#ffec99"] { fill: #3f3610; }
+      [stroke="#ffec99"] { stroke: #3f3610; }
+      [fill="#f8f9fa"] { fill: #1a1b1d; }
+      [stroke="#f8f9fa"] { stroke: #1a1b1d; }
+      [fill="#1971c2"] { fill: #4dabf7; }
+      [stroke="#1971c2"] { stroke: #4dabf7; }
+      [fill="#2f9e44"] { fill: #51cf66; }
+      [stroke="#2f9e44"] { stroke: #51cf66; }
+      [fill="#7048e8"] { fill: #9775fa; }
+      [stroke="#7048e8"] { stroke: #9775fa; }
+      [fill="#495057"] { fill: #adb5bd; }
+      [stroke="#495057"] { stroke: #adb5bd; }
+      [fill="#e03131"] { fill: #ff8787; }
+      [stroke="#e03131"] { stroke: #ff8787; }
+      [fill="#e8590c"] { fill: #ff922b; }
+      [stroke="#e8590c"] { stroke: #ff922b; }
+      [fill="#f08c00"] { fill: #fcc419; }
+      [stroke="#f08c00"] { stroke: #fcc419; }
+      [fill="#1e1e1e"] { fill: #e9e9e7; }
+      [stroke="#1e1e1e"] { stroke: #e9e9e7; }
+      text[fill] { fill: #e9e9e7; }
+    }
+  </style>
   <defs>
     <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#1e1e1e" />
