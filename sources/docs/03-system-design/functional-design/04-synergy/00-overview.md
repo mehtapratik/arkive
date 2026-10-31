@@ -30,14 +30,14 @@ How Synergy is built. The PRD and [[02-prd/03-features/01-synergy/spec|spec]] sa
 Synergy ships three entry points, so a browser bundle can never pull in database code:
 
 - `@sidekick/synergy/server`: the repository, the save call and the resolvers' contract. It imports `server-only`.
-- `@sidekick/synergy/client`: the Rich Live Link component and the renderers' contract.
+- `@sidekick/synergy/react`: the Rich Live Link component and the renderers' contract. No database code, so it runs on the server and in the browser.
 - `@sidekick/synergy/contracts`: zod schemas and types shared by both, the content helpers (`extractRefs`, the quote re-matcher) and the error codes.
 
 See [[06-decisions/technical/platform-layer|Platform layer]] and [[03-system-design/non-functional/monorepo/dependency-flow|Dependency flow]].
 
 ## Type registration
 
-Each linkable type is registered by the package that provides it, never listed in Synergy. The registration comes in two halves, one per entry point:
+Each linkable type is registered by the package that provides it, never listed in Synergy. The registration comes in two halves, a server half and a React half, one per entry point:
 
 ```ts
 // server half, imported from '@sidekick/synergy/server'
@@ -54,14 +54,14 @@ interface LinkableTypeServer {
    addAnchor(tx: Tx, entityId: string, at: PassageAddress): Promise<string>;
 }
 
-// client half, imported from '@sidekick/synergy/client'
-interface LinkableTypeClient {
+// React half, imported from '@sidekick/synergy/react'
+interface LinkableTypeReact {
    type: string;
-   render(data: RenderData, display: "card" | "preview"): ReactNode; // pure: no fetching
+   render(data: RenderData, display: "card" | "preview"): ReactNode; // pure: no fetching, no hooks, no browser APIs
 }
 ```
 
-`resolve` fetches; `render` only turns the fetched data into React. Rendering happens on the server for Sidekick (async server components); a third party (Notion, Slack, a bot) uses the same JSON and renders it its own way. The registry or the app builds both maps and passes them to Synergy, so neither `core` nor Synergy imports a provider ([[02-prd/03-features/01-synergy/research/05-resolver-contract-home|research 05]], option A). Feature flags are separate and come later.
+`resolve` fetches and always runs on the server; `render` only turns the fetched data into React, so it runs wherever the component runs. Sidekick renders in both places: in a server component for a page's first paint, and in the browser when the editor inserts or changes a link, where the component fetches the new link's data through `POST /links/resolve` and renders it on the spot. A third party (Notion, Slack, a bot) uses the same JSON and renders it its own way. The registry or the app builds both maps and passes them to Synergy, so neither `core` nor Synergy imports a provider ([[02-prd/03-features/01-synergy/research/05-resolver-contract-home|research 05]], option A). Feature flags are separate and come later.
 
 ## Keys, never copy
 
@@ -178,7 +178,7 @@ Entity content (create, save, delete, restore) goes through each provider's own 
 
 ## Rich Live Link
 
-Lives in Synergy (`/client`) and builds on `ui` primitives. It takes the mentions to show and a **transport**, `resolveLinks(requests) => Promise<ResolvedLink[]>`, so the host decides how the request travels: Sidekick's server components call the same handler as `POST /links/resolve`, and a third party calls the HTTP route with its own credentials. It owns the frame and every state, and calls the registered renderers with the resolved render data. The display type belongs to each mention.
+Lives in Synergy (`/react`) and builds on `ui` primitives. It renders on the server and in the browser. It takes the mentions to show and a **transport**, `resolveLinks(requests) => Promise<ResolvedLink[]>`, so the host decides how the request travels: a Sidekick server component calls the same handler as `POST /links/resolve`, Sidekick's browser code (the editor inserting a link) calls the route with the session cookie, and a third party calls it with its own credentials. It owns the frame and every state, and calls the registered renderers with the resolved render data. The display type belongs to each mention.
 
 ## Content helpers
 

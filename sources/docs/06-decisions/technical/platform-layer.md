@@ -41,7 +41,7 @@ Foundation says _how_, platform says _what_, features say _which_. **Each layer 
 
 ## Consequences
 
-- **One package, three entry points** (2026-10-31): `@sidekick/synergy/server` (repository, save call, resolver contract; imports `server-only`), `/client` (the Rich Live Link component and renderer contract) and `/contracts` (zod schemas, types, error codes, content helpers). Drizzle code and a React component live in one package, so the split keeps database code out of browser bundles. Type registrations come in a server half and a client half for the same reason.
+- **One package, three entry points** (2026-10-31): `@sidekick/synergy/server` (repository, save call, resolver contract; imports `server-only`), `/react` (the Rich Live Link component and renderer contract, which run on the server and in the browser) and `/contracts` (zod schemas, types, error codes, content helpers). Drizzle code and a React component live in one package, so the split keeps database code out of browser bundles. Type registrations come in a server half and a React half for the same reason.
 - Phase 3a moves `core`, `ui` and `copy` into `packages/foundation/` with `git mv`.
 - `eslint.config.js` gets a `platform` element type (`packages/platform/*`) and a `foundation` element type (`packages/foundation/*`), loses the `packages/*` catch-all, and reports files in no element. Apps, the registry, features and ops may import platform packages, and platform packages may import only foundation packages. Platform packages may not import each other until a rule allows it.
 - `pnpm-workspace.yaml` globs `packages/foundation/*`, `packages/platform/*` and `packages/features/*`.

@@ -69,7 +69,7 @@ depends_on:
 - **Tombstones** ([[06-decisions/technical/tombstone-visibility|decision]]): Synergy's RLS compares only `user_id`, the update trigger lets a restore through, the outbox and idempotency keys are hard-deleted. Follow-up outside Phase 3 lessons: revise `row-level-security.md` and `soft-delete-support.md`.
 - **List links:** `type` NOT NULL with a seeded `untyped`, a `role` column in the composite FK, lexorank positions with a unique `(parent_id, position)`.
 - **Supersede:** `superseded-by` from the old entity to each replacement, a reference, any number of successors.
-- **API:** the endpoint table and error-to-HTTP map in the overview, including `POST /api/synergy/links/resolve`. Freeze the resolved-link schema in zod in `@sidekick/synergy/contracts`, and ship `/server` (with `server-only`), `/client` and `/contracts` entry points.
+- **API:** the endpoint table and error-to-HTTP map in the overview, including `POST /api/synergy/links/resolve`. Freeze the resolved-link schema in zod in `@sidekick/synergy/contracts`, and ship `/server` (with `server-only`), `/react` (renders on the server and in the browser) and `/contracts` entry points.
 - **Outbox:** store `pg_current_xact_id()` on every row; every event type from the overview; a read-only consumer role.
 - **Race tests with two connections:** an anchor added while the target is open, a delete racing a new reference, a restore after the graph changed. Plus a test pinning spec story 71 (trigram `word_similarity`).
 - **Design overview:** [[03-system-design/functional-design/04-synergy/00-overview|Synergy]] 1.1.0 (packages and entry points, type registration, tables, tombstones, write and read paths, API).
