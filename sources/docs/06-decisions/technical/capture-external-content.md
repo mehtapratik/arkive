@@ -3,7 +3,8 @@ publish: true
 id: decision.technical.capture-external-content
 created: 2026-10-30
 kind: decision
-version: 1.0.0
+updated: 2026-10-31
+version: 1.1.0
 tags:
    - decision
    - technical
@@ -20,7 +21,7 @@ applies_to:
 
 Synergy versions only content that Sidekick holds. A provider of external content (a tweet, a blog post, a news article, a PDF, a Word document) captures a copy into its own tables or file storage when the user saves it. From then on the item is an ordinary entity, and every Synergy rule applies to it unchanged.
 
-- **One row per saved item.** The provider's table (for example `taxila.external_items`) shares the entity's id with the entity index, one to one. A unique key on (user, source, external id) stops the same item being saved twice. Linking it from many documents adds relationships, not rows.
+- **One row per saved item.** The provider's table (for example `taxila.external_items`) shares the entity's id with the entity index, one to one. A unique key on (user, source, external id), partial on live rows (`WHERE deleted_at IS NULL`), stops the same item being saved twice and still lets it be saved again after a delete. Linking it from many documents adds relationships, not rows.
 - **The index stays thin.** The URL and external id live in the provider's table, not on the index row; nothing that crosses modules needs them. Identity differs by source (tweet id, DOI, ISBN, URL), so the provider models it. A cross-module lookup by URL can be added later as a nullable column backfilled from the providers' tables.
 - **Change detection compares captured text.** Pages change for reasons that aren't content (ads, timestamps), so the provider compares extracted text, not raw bytes. A file the user uploaded has no remote source and is never refreshed.
 - **Refresh and Detect are user actions.** A link to external content carries Refresh (fetch the source and compare) and, from the AI layer in Phase 6, Detect (AI advice on whether the new content still says what the user relied on). The user decides: keep the old copy, accept the new text as a revision, or accept it as a new version with a change note. A hash can't tell a revision from a version, so no resolver ever decides.

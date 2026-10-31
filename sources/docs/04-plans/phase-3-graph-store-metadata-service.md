@@ -2,9 +2,9 @@
 publish: true
 id: plan.phase-3-graph-store-metadata-service
 created: 2026-09-19
-updated: 2026-10-24
+updated: 2026-10-31
 kind: plan
-version: 1.0.1
+version: 1.0.2
 tags:
    - plan
    - living-plan
@@ -52,8 +52,17 @@ depends_on:
 - **Per-package migrations.** `pnpm db:migrate` runs `core`, then platform, then features and ops, each with its own Drizzle config and migrations table.
 - **`provider`, not `module`,** in the entity index schema and every API field.
 - **Links and mentions** ([[06-decisions/technical/mentions-and-link-lifetime|decision]]): `cited` and `mentioned` booleans on relationships, tombstone when both are false; display type stored per mention; the outgoing-reference roll-up on an entity's read response.
-- **Anchors** ([[06-decisions/technical/anchors-in-content|decision]]): `to_anchor` as id plus quote, no `from_anchor`, a `(to_id, to_anchor_id)` index, and the provider save call reporting removed anchors and added and removed mentions. Mock note bodies are minimal Tiptap JSON so tests can remove anchors and mentions.
+- **Anchors** ([[06-decisions/technical/anchors-in-content|decision]]): `to_anchor` as id plus quote, no `from_anchor`, a `(to_id, to_anchor_id)` index, and the provider save call reporting the current sets of block and anchor ids and mentioned relationship ids (built with `extractRefs`). Synergy keeps them in the `entity_anchors` and `entity_mentions` tables and computes the difference. Mock note bodies are minimal Tiptap JSON so tests can remove anchors and mentions.
 - **Editor order:** passages need Tiptap, planned for Phase 5, while Taxila's passages are planned for Phase 4. Move the shared editor ahead of Taxila's passages, or move the passages to Phase 5.
 - **Store choices** ([[06-decisions/technical/synergy-store-choices|decision]]): a test of the cycle check on a large synthetic graph, to decide whether a closure table is ever needed; `simple` full-text plus `pg_trgm` on display names; no outbox pruning job until the first reader.
 - **Testing** ([[03-system-design/non-functional/testing/testing-layers|testing layers]]): integration tests through the guarded API are the main seam; the Rich Live Link component is tested in Vitest browser mode with Testing Library and MSW. Visual regression waits for the design system.
-- **Design overview:** [[03-system-design/functional-design/04-synergy/00-overview|Synergy]] (packages, type registration, tables, write and read paths).
+- **`content_seq`** on the entity index ([[06-decisions/technical/content-sequence|decision]]): the stale-write check (`stale_content`), the ETag and the render cache key. An anchor write moves it, never the version or revision. The editor lesson adds the automatic merge on 409 (fetch, copy in missing anchors, save again).
+- **Lock first:** every Synergy write takes `pg_advisory_xact_lock(hashtextextended(user_id::text, 0))` before anything else.
+- **Restore checks:** restore, undo and relink re-run the delete block and cycle check and fail with `restore_conflict`; tombstones carry `deletion_batch_id`.
+- **Tombstones** ([[06-decisions/technical/tombstone-visibility|decision]]): Synergy's RLS compares only `user_id`, the update trigger lets a restore through, the outbox and idempotency keys are hard-deleted. Follow-up outside Phase 3 lessons: revise `row-level-security.md` and `soft-delete-support.md`.
+- **List links:** `type` NOT NULL with a seeded `untyped`, a `role` column in the composite FK, lexorank positions with a unique `(parent_id, position)`.
+- **Supersede:** `superseded-by` from the old entity to each replacement, a reference, any number of successors.
+- **API:** the endpoint table and error-to-HTTP map in the overview, including `POST /api/synergy/links/resolve`. Freeze the resolved-link schema in zod in `@sidekick/synergy/contracts`, and ship `/server` (with `server-only`), `/client` and `/contracts` entry points.
+- **Outbox:** store `pg_current_xact_id()` on every row; every event type from the overview; a read-only consumer role.
+- **Race tests with two connections:** an anchor added while the target is open, a delete racing a new reference, a restore after the graph changed. Plus a test pinning spec story 71 (trigram `word_similarity`).
+- **Design overview:** [[03-system-design/functional-design/04-synergy/00-overview|Synergy]] 1.1.0 (packages and entry points, type registration, tables, tombstones, write and read paths, API).
