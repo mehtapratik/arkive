@@ -67,7 +67,7 @@ depends_on:
 - **Lock first:** every Synergy write takes `pg_advisory_xact_lock(hashtextextended(user_id::text, 0))` before anything else.
 - **Restore checks:** restore, undo and relink re-run the delete block and cycle check and fail with `restore_conflict`; tombstones carry `deletion_batch_id`.
 - **Tombstones** ([[06-decisions/technical/tombstone-visibility|decision]]): Synergy's RLS compares only `user_id`, the update trigger lets a restore through, the outbox and idempotency keys are hard-deleted. Follow-up outside Phase 3 lessons: revise `row-level-security.md` and `soft-delete-support.md`.
-- **List links:** `type` NOT NULL with a seeded `untyped`, a `role` column in the composite FK, lexorank positions with a unique `(parent_id, position)`.
+- **List links:** `type` NOT NULL with a seeded `untyped`, a `role` column (`solo`, `list`, `member`) in the composite FK, relation types keyed by `source_key` and `target_key`, lexorank positions with a unique `(parent_id, position)`.
 - **Supersede:** `superseded-by` from the old entity to each replacement, a reference, any number of successors.
 - **API:** the endpoint table and error-to-HTTP map in the overview, including `POST /api/synergy/links/resolve`. Freeze the resolved-link schema in zod in `@sidekick/synergy/contracts`, and ship `/server` (with `server-only`), `/react` (renders on the server and in the browser) and `/contracts` entry points.
 - **Outbox:** store `pg_current_xact_id()` on every row; every event type from the overview; a read-only consumer role.
