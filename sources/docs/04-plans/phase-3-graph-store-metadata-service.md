@@ -4,7 +4,7 @@ id: plan.phase-3-graph-store-metadata-service
 created: 2026-09-19
 updated: 2026-10-31
 kind: plan
-version: 1.0.2
+version: 1.0.3
 tags:
    - plan
    - living-plan
@@ -48,7 +48,13 @@ depends_on:
 > [!note]
 > The task table above predates the Synergy PRD and is rewritten as lessons after the system-design session. These items come out of that session and must become tasks.
 
-- **Platform layer** ([[06-decisions/technical/platform-layer|decision]], [[03-system-design/non-functional/monorepo/dependency-flow|dependency flow]] 1.2.0). Create `packages/platform/synergy`. Add `packages/platform/*` to `pnpm-workspace.yaml`. Add the `platform` element type to `eslint.config.js` above the `packages/*` catch-all, with policies: app, registry, feature and ops may import platform; platform may import only foundation; platform packages may not import each other. Prove the rule through `pnpm lint` inside a package, with one allowed and one refused import.
+- **Layer folders and the platform layer, in 3a** ([[06-decisions/technical/platform-layer|decision]], [[03-system-design/non-functional/monorepo/dependency-flow|dependency flow]] 1.3.0, [[03-system-design/non-functional/code-quality-checks/eslint/eslint-plugin-boundaries|eslint-plugin-boundaries]] 2.2.0):
+   - Move `core`, `ui` and `copy` into `packages/foundation/` with `git mv`. Package names stay, so no imports change. Fix the paths that depend on depth: the three `tsconfig.json` `extends` (`../../../tsconfig.base.json`), core's `db:generate` and `db:migrate` scripts (`../../../.env.local`), the `packages/core/…` and `packages/ui/…` file globs in `eslint.config.js`, `.prettierignore` and the comment in `.env.example`. Reinstall so the lockfile follows.
+   - Create `packages/platform/synergy`. Glob `packages/foundation/*`, `packages/platform/*` and `packages/features/*` in `pnpm-workspace.yaml`, and add the same folders to the import resolver's `project` list.
+   - In `eslint.config.js`, add the `platform` and `foundation` element types, remove the `packages/*` catch-all, and turn on boundaries' unknown-files rule (check its v7 name) so a package in no layer fails lint. Policies: app, registry, feature and ops may import platform; platform may import only foundation; platform packages may not import each other.
+   - Prove it through `pnpm lint` inside a package: one allowed import, one refused import, and one package in no layer that fails.
+   - Verify the move the way things really run: `pnpm turbo run build lint test --force`, the test-database script and `pnpm db:migrate`.
+   - After the move, update the live docs that name the old paths (the Synergy overview, testing layers, Lexicon highlighting, centralized copy, ESLint best-practice rules, shared tsconfig, TypeScript hoisting, the agent guide), and add a post note to the Phase 2 walkthrough. Finished walkthroughs keep their old paths.
 - **Per-package migrations.** `pnpm db:migrate` runs `core`, then platform, then features and ops, each with its own Drizzle config and migrations table.
 - **`provider`, not `module`,** in the entity index schema and every API field.
 - **Links and mentions** ([[06-decisions/technical/mentions-and-link-lifetime|decision]]): `cited` and `mentioned` booleans on relationships, tombstone when both are false; display type stored per mention; the outgoing-reference roll-up on an entity's read response.
