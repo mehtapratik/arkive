@@ -63,6 +63,17 @@ interface LinkableTypeClient {
 
 `resolve` fetches; `render` only turns the fetched data into React. Rendering happens on the server for Sidekick (async server components); a third party (Notion, Slack, a bot) uses the same JSON and renders it its own way. The registry or the app builds both maps and passes them to Synergy, so neither `core` nor Synergy imports a provider ([[02-prd/03-features/01-synergy/research/05-resolver-contract-home|research 05]], option A). Feature flags are separate and come later.
 
+## Keys, never copy
+
+Synergy holds no user-visible text ([[03-system-design/non-functional/content/centralized-copy|Centralized copy]]; Pratik, 2026-10-31). Everything it stores or returns is a stable key, and every label comes from `packages/copy`, so a term can be renamed or translated without a migration or an API change:
+
+- `provider` and `type` on registrations and index rows (`ops`, `note`): the type's label ("Note") is a copy key such as `synergy.type.ops.note`.
+- Relation types store a `key` and an `inverse_key` (`explained-by`, `explains`); "explained by" on screen comes from copy. User-defined types (post-MVP) are the exception, because their names are the user's own content.
+- Statuses, states, marks and display types are enums (`deprecated`, `no_longer_linked`, `passage_removed`), and error codes carry no message; the client looks up the message by code.
+- The resolved link and every API response carry keys only. Sidekick's UI and the Rich Live Link map them through copy; a third party maps them its own way.
+
+User content (titles, display names, labels, change notes, tag names) is stored as written.
+
 ## Tables (Synergy's migrations)
 
 **Every table:** client-generated UUIDs, `user_id`, `created_at`, `updated_at`, provenance (actor kind: person, system, agent or API key; actor id; reason), and RLS comparing `user_id = nullif(current_setting('app.current_user_id', true), '')::uuid`. Syncable tables soft-delete; every unique index on them is partial (`WHERE deleted_at IS NULL`), so a tombstone never blocks re-adding the same tag or saving the same item again. How tombstones stay visible to Synergy is in [Tombstones](#tombstones).
@@ -77,7 +88,7 @@ interface LinkableTypeClient {
    - `type` is NOT NULL so the FK can't be skipped (Postgres ignores a composite FK when any column is null). An untyped link uses the seeded system type `untyped`, kind reference, which displays no type name.
    - Positions are fractional text keys (lexorank) with a unique index on `(parent_id, position)`, so moving one member writes one row.
    - `deletion_batch_id` groups the tombstones written by one delete, so a restore brings back exactly that batch.
-- **`relation_types`**: name, inverse name, kind (reference or association), status, system flag; seeded with the starter vocabulary plus `untyped`.
+- **`relation_types`**: `key`, `inverse_key`, kind (reference or association), status, system flag; seeded with the starter vocabulary plus `untyped`. Labels live in copy.
 - **`tags`** and **`tag_applications`**: as in the spec, with the format check constraint.
 - **`outbox`**: event type, subject, actor, payload, time, and `xact_id` (`pg_current_xact_id()`), which lets a reader process events in commit order. A long transaction can commit a lower `bigserial` id after a reader has moved past it; the transaction id can't be rebuilt later, so it is stored from the first row. Event types: entity created, content saved, version bumped, status changed, entity deleted, restored or erased; relationship created, updated (label or type), cited, uncited, deleted or restored; snapshot moved (the referencer confirmed the link still holds); passage removed; tag created, renamed, merged or deprecated; tag applied or removed. Read by a dedicated read-only role outside RLS, since readers work across users. 90-day retention after every reader has processed it.
 - **`idempotency_keys`** for creates.
