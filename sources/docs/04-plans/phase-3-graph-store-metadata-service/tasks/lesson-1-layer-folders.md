@@ -15,7 +15,7 @@ tags:
 status: planned
 ---
 
-> **Lesson 1 of 13 in Phase 3a.** Before this: [[04-plans/phase-2-core-infrastructure-api-guard-feature-system/tasks/lesson-8-close-out|Phase 2 close-out]]. Next: [[04-plans/phase-3-graph-store-metadata-service/tasks/lesson-2-per-package-migrations|lesson 2]]. The coach follows the plan's [[04-plans/phase-3-graph-store-metadata-service#How we build|how we build]].
+> **Lesson 1 of 13 in Phase 3a.** Before this: [[04-plans/phase-2-core-infrastructure-api-guard-feature-system/tasks/lesson-8-close-out|Phase 2 close-out]]. Next: [[04-plans/phase-3-graph-store-metadata-service/tasks/lesson-2-per-package-migrations|lesson 2]]. The coach follows the plan's [[04-plans/phase-3-graph-store-metadata-service/phase-3-graph-store-metadata-service#How we build|how we build]].
 
 **What gets built:** every layer gets its own folder. `core`, `ui` and `copy` move into `packages/foundation/`, an empty `packages/platform/synergy` (`@sidekick/synergy`) appears, and lint fails on a package that sits in no layer.
 

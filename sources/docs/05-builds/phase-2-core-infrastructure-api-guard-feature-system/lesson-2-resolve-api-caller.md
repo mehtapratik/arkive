@@ -21,7 +21,7 @@ applies_to:
 
 # Phase 2 Lesson 2 Walkthrough — `resolveApiCaller`
 
-This guide reproduces lesson 2 of [[04-plans/phase-2-core-infrastructure-api-guard-feature-system-complete|Phase 2]] step by step: task 2.1, which gives API routes a way to know who is calling. It assumes lesson 1 is merged ([[05-builds/phase-2-core-infrastructure-api-guard-feature-system/lesson-1-feature-registry|lesson 1 walkthrough]]) and that `packages/core/src/api/` doesn't exist yet.
+This guide reproduces lesson 2 of [[04-plans/phase-2-core-infrastructure-api-guard-feature-system/phase-2-core-infrastructure-api-guard-feature-system-complete|Phase 2]] step by step: task 2.1, which gives API routes a way to know who is calling. It assumes lesson 1 is merged ([[05-builds/phase-2-core-infrastructure-api-guard-feature-system/lesson-1-feature-registry|lesson 1 walkthrough]]) and that `packages/core/src/api/` doesn't exist yet.
 
 The result shipped as [sidekick#13](https://github.com/mehtapratik/sidekick/pull/13). The design is recorded in [[contracts#Caller|contracts]] (version 2.4.0).
 

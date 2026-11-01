@@ -16,7 +16,7 @@ tags:
 status: planned
 ---
 
-> **Lesson 13 of 13 in Phase 3a.** Before this: [[04-plans/phase-3-graph-store-metadata-service/tasks/lesson-12-tags|lesson 12]]. Next: [[04-plans/phase-3-graph-store-metadata-service/tasks/checkpoint-3a|Checkpoint 3a]]. The coach follows the plan's [[04-plans/phase-3-graph-store-metadata-service#How we build|how we build]].
+> **Lesson 13 of 13 in Phase 3a.** Before this: [[04-plans/phase-3-graph-store-metadata-service/tasks/lesson-12-tags|lesson 12]]. Next: [[04-plans/phase-3-graph-store-metadata-service/tasks/checkpoint-3a|Checkpoint 3a]]. The coach follows the plan's [[04-plans/phase-3-graph-store-metadata-service/phase-3-graph-store-metadata-service#How we build|how we build]].
 
 **What gets built:** tests that prove the lock-first rule and the stale-write check under real concurrency, with two database connections interleaved on purpose, and a measurement of the cycle check on a large synthetic graph.
 

@@ -15,7 +15,7 @@ tags:
 status: planned
 ---
 
-> **Lesson 10 of 13 in Phase 3a.** Before this: [[04-plans/phase-3-graph-store-metadata-service/tasks/lesson-9-save-mentions|lesson 9]]. Next: [[04-plans/phase-3-graph-store-metadata-service/tasks/lesson-11-delete-and-restore|lesson 11]]. The coach follows the plan's [[04-plans/phase-3-graph-store-metadata-service#How we build|how we build]].
+> **Lesson 10 of 13 in Phase 3a.** Before this: [[04-plans/phase-3-graph-store-metadata-service/tasks/lesson-9-save-mentions|lesson 9]]. Next: [[04-plans/phase-3-graph-store-metadata-service/tasks/lesson-11-delete-and-restore|lesson 11]]. The coach follows the plan's [[04-plans/phase-3-graph-store-metadata-service/phase-3-graph-store-metadata-service#How we build|how we build]].
 
 **What gets built:** links to a passage of a note, not the whole note. Linking to a passage asks the note's provider to write an anchor mark into the note (`addAnchor`), records the passage in `entity_anchors`, and answers with an anchor receipt. Every later save of the note reports its block and anchor ids, so Synergy can refuse a save that drops a referenced passage, or mark the passage removed when the save is a new version.
 

@@ -17,8 +17,8 @@ tags:
    - graph
 status: planned
 depends_on:
-   - "[[04-plans/phase-1-1-db-level-rls-soft-delete-enforcement-complete]]"
-   - "[[04-plans/phase-2-core-infrastructure-api-guard-feature-system-complete]]"
+   - "[[04-plans/phase-1-supabase-and-auth-shell/phase-1-1-db-level-rls-soft-delete-enforcement-complete]]"
+   - "[[04-plans/phase-2-core-infrastructure-api-guard-feature-system/phase-2-core-infrastructure-api-guard-feature-system-complete]]"
 ---
 
 **Synergy** is Phase 3: how any entity in any module links to any other. Scope: the entity index and version log, links and relation types, staleness, lists, mentions and anchors, delete and restore, and tags, built in two parts (3a the store and its API, 3b resolving and rendering links).
@@ -56,7 +56,7 @@ Lessons run one at a time, in this order, each in its own thread, on Pratik's Ma
 
 ```
 Coach me through Phase 3 lesson 1. Read AGENTS.md, the Phase 3 plan
-(docs/04-plans/phase-3-graph-store-metadata-service.md) and that lesson's
+(docs/04-plans/phase-3-graph-store-metadata-service/phase-3-graph-store-metadata-service.md) and that lesson's
 brief (the plan's Lessons table links each one) before we start.
 ```
 

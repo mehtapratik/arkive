@@ -16,7 +16,7 @@ tags:
 status: planned
 ---
 
-> **Lesson 8 of 13 in Phase 3a.** Before this: [[04-plans/phase-3-graph-store-metadata-service/tasks/lesson-7-staleness|lesson 7]]. Next: [[04-plans/phase-3-graph-store-metadata-service/tasks/lesson-9-save-mentions|lesson 9]]. The coach follows the plan's [[04-plans/phase-3-graph-store-metadata-service#How we build|how we build]].
+> **Lesson 8 of 13 in Phase 3a.** Before this: [[04-plans/phase-3-graph-store-metadata-service/tasks/lesson-7-staleness|lesson 7]]. Next: [[04-plans/phase-3-graph-store-metadata-service/tasks/lesson-9-save-mentions|lesson 9]]. The coach follows the plan's [[04-plans/phase-3-graph-store-metadata-service/phase-3-graph-store-metadata-service#How we build|how we build]].
 
 **What gets built:** list links (one source, an ordered list of targets, each member a complete edge with its own type) and supersede (an old entity points to each replacement, and the first replacement marks it superseded after the user confirms).
 
