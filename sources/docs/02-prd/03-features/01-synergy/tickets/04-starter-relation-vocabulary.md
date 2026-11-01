@@ -15,6 +15,8 @@ tags:
 ---
 
 > **Retired 2026-10-29.** The outcome lives in the [[02-prd/03-features/01-synergy/00.prd.features.synergy.overview|Synergy PRD]] and [[02-prd/03-features/01-synergy/spec|spec]]. This page stays as the record of how it was decided.
+>
+> **Note 2026-11-01.** Two types joined the starter set: `violates` ↔ `violated-by` (association) and `exception-to` ↔ `has-exception` (reference). See [[02-prd/03-features/01-synergy/02.prd.features.synergy.relationships#Violations and exceptions|Violations and exceptions]]. `depends-on` stays dropped.
 
 ## Question
 
