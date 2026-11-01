@@ -2,9 +2,9 @@
 publish: true
 id: harness.agent-guide
 created: 2026-09-19
-updated: 2026-10-24
+updated: 2026-11-01
 kind: guidance
-version: 1.3.0
+version: 1.3.1
 tags:
    - ai-coding
    - agent
@@ -41,7 +41,7 @@ Pratik builds Sidekick to learn full-stack development. The goal is to build fas
 ## Where things stand
 
 - **Complete:** Phases 0, 1 and 1.1, [[04-plans/pre-2-foundation-hardening-complete|Pre-2 — Foundation Hardening]] (walkthrough in [[05-builds/pre-2-walkthrough]]) and [[04-plans/phase-2-core-infrastructure-api-guard-feature-system-complete|Phase 2 — API Guard and Feature System]] (walkthrough in [[05-builds/phase-2-walkthrough]]). Every API route goes through `withApiGuard` (`@sidekick/core/api`); `ALL_FEATURES` is still empty, so no feature is granted yet.
-- **Next:** [[04-plans/phase-3-graph-store-metadata-service|Phase 3 — Graph Store & Metadata Service]], once its gate is checked: it depends on Phase 1.1 and Phase 2, both complete. Deferred follow-ups from Phase 2 are in [[backlogged-unplanned]] (B6–B8).
+- **Next:** [[04-plans/phase-3-graph-store-metadata-service|Phase 3 — Synergy]], planned as lessons for part 3a (the store and its API), starting with [[04-plans/phase-3-graph-store-metadata-service/tasks/lesson-1-layer-folders|lesson 1]]. Part 3b is planned at Checkpoint 3a. Deferred follow-ups from Phase 2 are in [[backlogged-unplanned]] (B6–B8).
 - **Toolchain:** Node 24 (`.nvmrc` `24`, `engines.node` `24.x`, `engineStrict`), pnpm 12 through Corepack, TypeScript 6.0 (held below 6.1), ESLint 10 flat config with `eslint-plugin-import-x` and `eslint-plugin-boundaries` 7, Next.js 16, Vitest, PostgreSQL 17 in tests and CI.
 - **Feature packages:** none exist yet. They go in `packages/features/*`; add that glob to `pnpm-workspace.yaml` with the first one.
 
