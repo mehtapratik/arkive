@@ -1,7 +1,7 @@
 ---
 publish: true
 id: plan.phase-2.lesson-8-close-out
-title: "Lesson 8: Phase 2 Close-Out"
+title: "Gatekeeper Lesson 8: Close-Out"
 created: 2026-10-24
 updated: 2026-10-24
 kind: plan

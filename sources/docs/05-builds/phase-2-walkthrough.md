@@ -1,7 +1,7 @@
 ---
 publish: true
 id: build.phase-2
-title: Phase 2 Walkthrough
+title: Gatekeeper Walkthrough
 created: 2026-10-24
 updated: 2026-10-24
 kind: guidance

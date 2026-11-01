@@ -1,7 +1,7 @@
 ---
 publish: true
 id: plan.phase-3.checkpoint-3a
-title: "Phase 3 Checkpoint 3a: Prove the Store, Plan 3b"
+title: "Synergy Checkpoint 3a: Prove the Store, Plan 3b"
 created: 2026-11-01
 updated: 2026-11-01
 kind: plan
