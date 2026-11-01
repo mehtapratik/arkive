@@ -66,7 +66,7 @@ pnpm ops:entitlements:grant --email <email> --all [--apply]
 ## Always true
 
 - Do not invent product scope. Read the relevant PRD and phase note first.
-- Preserve dependency direction: `apps/* → packages/features-registry → packages/features/* → foundation (core, ui, copy)`; packages never import apps. `packages/ops` (privileged scripts) may import the registry and foundation, and nothing may import it. `pnpm lint` enforces it.
+- Preserve dependency direction ([[03-system-design/non-functional/monorepo/dependency-flow|dependency flow]]): apps, the registry, features, platform and foundation, top to bottom; a layer may import any layer below it, never one above it or a sibling in its own layer, and packages never import apps. `packages/ops` (privileged scripts) may import the registry and foundation, and nothing may import it. `pnpm lint` enforces it.
 - Mutations stay in the API layer. Every App Router route handler is wrapped in `withApiGuard` (lint rule `require-api-guard`); Server Actions, the Pages Router and custom `pageExtensions` are banned.
 - User-data queries go through `withRLS`, the only public database entry point. Raw Drizzle and admin Supabase clients are server-only and lint-restricted to the wrappers that need them. The one privileged path is `packages/ops`'s `withPrivilegedDb` (`DATABASE_DIRECT_URL`, bypasses RLS), for dev seeds, provisioning and break-glass scripts only.
 - Syncable entities use client-generated IDs and soft deletes; APIs are idempotent.
