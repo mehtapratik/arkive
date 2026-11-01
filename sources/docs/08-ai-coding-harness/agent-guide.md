@@ -1,6 +1,7 @@
 ---
 publish: true
 id: harness.agent-guide
+title: Agent Guide
 created: 2026-09-19
 updated: 2026-11-01
 kind: guidance
