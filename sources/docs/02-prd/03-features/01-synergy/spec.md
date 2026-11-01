@@ -12,7 +12,7 @@ tags:
    - spec
    - synergy
 applies_to:
-   - "[[04-phases/03-synergy/plan]]"
+   - "[[04-phases/03-synergy/00-plan]]"
 publish: true
 ---
 

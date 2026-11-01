@@ -11,7 +11,7 @@ tags:
    - feature
    - factory
 applies_to:
-   - "[[04-phases/07-war-room/plan]]"
+   - "[[04-phases/07-war-room/00-plan]]"
 ---
 
 1. Execution and automation.

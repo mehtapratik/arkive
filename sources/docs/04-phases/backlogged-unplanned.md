@@ -75,7 +75,7 @@ These items are known, intentional gaps — deferred, not forgotten.
 
 ### B6 — Ops command follow-ups
 
-**What:** Three additions to `packages/ops` ([[contracts#Ops|contracts]]), each waiting on its own trigger:
+**What:** Three additions to `packages/ops` ([[04-phases/02-gatekeeper/01-contracts#Ops|contracts]]), each waiting on its own trigger:
 
 - **A `revoke` command** (`entitlements revoke`), the mirror of `entitlements grant`. Until then, disabling a feature is a `DELETE` on `user_feature_entitlements` with the privileged role.
 - **A dispatcher**, `pnpm ops <noun> <verb>` with `--help`, wrapping the existing scripts rather than rewriting them.
@@ -89,9 +89,9 @@ These items are known, intentional gaps — deferred, not forgotten.
 
 **What:** An unauthenticated endpoint a host or uptime monitor can call. `/api/health` requires a session, so it can't serve as one.
 
-**Why deferred:** Decided in Phase 2 lesson 6 (2026-10-23). Every route is guarded by construction, and lint rejects anything else. A public probe means a deliberate exception to `sidekick/require-api-guard`: a security decision for Pratik, recorded in [[contracts]] with its reason and set in `eslint.config.js`, never an inline disable.
+**Why deferred:** Decided in Phase 2 lesson 6 (2026-10-23). Every route is guarded by construction, and lint rejects anything else. A public probe means a deliberate exception to `sidekick/require-api-guard`: a security decision for Pratik, recorded in [[04-phases/02-gatekeeper/01-contracts]] with its reason and set in `eslint.config.js`, never an inline disable.
 
-**When to implement:** When a host or monitoring service needs it, at the latest with [[04-phases/10-watchtower/plan|Phase 10]].
+**When to implement:** When a host or monitoring service needs it, at the latest with [[04-phases/10-watchtower/00-plan|Phase 10]].
 
 ### B8 — Faster session checks
 
@@ -105,7 +105,7 @@ These items are known, intentional gaps — deferred, not forgotten.
 
 **What:** Factory grows beyond push-button workflows: triggered and recurring automations, inbox management and IoT integrations. External agents interact with your data through the public API. Parrot (B4) is the last item.
 
-**Why deferred:** Exploratory and open-ended; it follows the MVP ([[04-phases/07-war-room/plan|War Room]] ships only push-button Factory workflows).
+**Why deferred:** Exploratory and open-ended; it follows the MVP ([[04-phases/07-war-room/00-plan|War Room]] ships only push-button Factory workflows).
 
 **When to implement:** When you are ready; no phase depends on it. Learning payoff: agent interoperability, webhook-driven automation, workflow design patterns.
 
