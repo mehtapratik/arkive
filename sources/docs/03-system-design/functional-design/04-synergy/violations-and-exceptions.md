@@ -36,7 +36,7 @@ A violation has no status. **Open** is a live `violates` link. **Resolved** is u
 
 ## Consequences
 
-- Lesson 6 seeds both types and tests them: a `violates` link never goes stale and never blocks the rule's delete; retyping it to `exception-to` keeps its id, takes a fresh snapshot, runs the cycle check and then blocks the rule's delete; the `type` filter returns only that type.
+- Lesson 6 seeds both types and tests the retype (same id, fresh snapshot, cycle check) and the `type` filter. Lesson 7 tests that `violates` shows no dot and `exception-to` goes stale with its rule. Lesson 11 tests that `violates` never blocks the rule's delete and `exception-to` does.
 - 3b adds `GET /links?type=` and its `(user_id, type)` index, next to search and backlinks.
 - Arkive's datum markers already use both words (the arkive repo's `CLAUDE.md` and `src/lib/datums.mjs`), so the product and the docs that describe it share one vocabulary.
 
