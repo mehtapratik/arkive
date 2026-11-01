@@ -157,6 +157,7 @@ A prefix in brackets names the only actors a story applies to. A story without o
 91. Resolve a violation by unlinking it.
 92. Waive a violation by changing its type to `exception-to`. It stays the same link, with a fresh snapshot of the rule.
 93. Filter an entity's links or backlinks by type: "what violates this rule?"
+94. List links of one type across every module: every open violation in one list.
 
 ## Implementation Decisions
 
@@ -268,7 +269,6 @@ The prototype's resolved-link shape, trimmed (from the throwaway prototype in ti
 - Notifications and digests, readers reporting broken sources, diffs and "as linked" views.
 - Body-text search, search providers and embeddings.
 - User-defined relation types, links to links, and nested tags.
-- A list of every open violation across the graph. It lands with Taxila.
 - Issue tracking on violations: a status, who resolved one and why, and a history of closed ones.
 - References between users and redaction across users.
 - Bulk link and tag endpoints.

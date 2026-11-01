@@ -117,7 +117,7 @@ Synergy must see its own tombstones: a deleted target still shows its name, "No 
 
 ### Indexes
 
-`to_id` (backlinks), `(to_id, to_anchor_id)` (passage check), `from_id`, the unique `(parent_id, position)`, `entity_anchors (entity_id, anchor_id)`, `entity_mentions (entity_id)` and `(relationship_id)`, tag applications by tag, index rows by owner and status, an index on outbox `xact_id`, and the search indexes. Trigram and full-text GIN indexes lead with `user_id` (`btree_gin`: `(user_id, display_name gin_trgm_ops)` and the same for the `simple` tsvector), so a search reads one user's rows instead of every user's.
+`to_id` (backlinks), `(to_id, to_anchor_id)` (passage check), `from_id`, the unique `(parent_id, position)`, `entity_anchors (entity_id, anchor_id)`, `entity_mentions (entity_id)` and `(relationship_id)`, tag applications by tag, `relationships (user_id, type)` (links by type across the graph), index rows by owner and status, an index on outbox `xact_id`, and the search indexes. Trigram and full-text GIN indexes lead with `user_id` (`btree_gin`: `(user_id, display_name gin_trgm_ops)` and the same for the `simple` tsvector), so a search reads one user's rows instead of every user's.
 
 ## Write path
 
@@ -172,6 +172,7 @@ Entity content (create, save, delete, restore) goes through each provider's own 
 | `POST /links/:id/restore`               | none                                                      | resolved link                                     | `restore_conflict`, `not_found`                                                  |
 | `POST /links/:id/snapshot`              | none (moves the snapshot: "still holds")                  | resolved link                                     | `not_found`                                                                      |
 | `POST /links/resolve`                   | `[{ relationshipId, display }]`                           | resolved links, in request order                  | none per item: a missing one resolves as not found                               |
+| `GET /links`                            | `type`, cursor                                            | resolved links page, across every provider        | none                                                                             |
 | `GET /search`                           | `q`, type, provider, status, tag, cursor                  | index rows page                                   | none                                                                             |
 | `GET /tags`, `POST /tags`               | cursor; name, description; idempotency                    | tags page; tag                                    | `invalid_tag`                                                                    |
 | `PATCH /tags/:id`                       | rename, description, deprecate, merge into                | tag                                               | `invalid_tag`, `not_found`                                                       |

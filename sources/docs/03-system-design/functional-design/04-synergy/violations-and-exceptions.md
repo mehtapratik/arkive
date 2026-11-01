@@ -19,7 +19,7 @@ Two relation types join the starter vocabulary, as seeded rows with copy keys an
 - **`violates` ↔ `violated-by`**, an association from the offender to the rule, principle or decision it breaks.
 - **`exception-to` ↔ `has-exception`**, a reference from an exception to the rule it limits. Where the exception applies is said in its own content, not on the link.
 
-A violation has no status. **Open** is a live `violates` link. **Resolved** is unlinking it (`DELETE /links/:id`). **Waived** is changing its type to `exception-to` (`PATCH /links/:id`), which keeps the relationship id. A type change from an association to a reference takes a fresh snapshot of the target. `GET /entities/:id/links` takes an optional `type` filter. The rules as the product states them are in [[02-prd/03-features/01-synergy/02.prd.features.synergy.relationships#Violations and exceptions|Violations and exceptions]].
+A violation has no status. **Open** is a live `violates` link. **Resolved** is unlinking it (`DELETE /links/:id`). **Waived** is changing its type to `exception-to` (`PATCH /links/:id`), which keeps the relationship id. A type change from an association to a reference takes a fresh snapshot of the target. `GET /entities/:id/links` takes an optional `type` filter, and `GET /links?type=` lists links of one type across the whole graph. The rules as the product states them are in [[02-prd/03-features/01-synergy/02.prd.features.synergy.relationships#Violations and exceptions|Violations and exceptions]].
 
 ## Why
 
@@ -31,12 +31,13 @@ A violation has no status. **Open** is a live `violates` link. **Resolved** is u
 - **Fresh snapshot on the change.** The author looked at the rule when they waived, so the link shouldn't open with a red dot from changes made while it was a violation.
 - **Rejected: tombstone reasons** (`resolved`, `waived`). A waived violation isn't gone. A tombstone would turn its mentions into "No longer linked" and drop it from the rule's backlinks.
 - **Rejected: a status column** (open, resolved, waived, with who, when and why). That is issue tracking, a post-MVP candidate in [[08.prd.features.synergy.scope-and-phases#Post-MVP candidates|scope and phases]]. A nullable column is cheap to add later ([[principle.cost-to-add-later|Cost to Add Later]]). With issue tracking, a waiver would still end as an `exception-to` link, with the closed violation kept beside it.
-- **The type filter now, the graph-wide list with Taxila.** The filter is one more condition on a route lesson 6 builds, covered by the `from_id` and `to_id` indexes. A list of every open violation needs a new route and a `(user_id, type)` index; in Phase 3 only the playground would call it, so it lands with Taxila, where real datums break real rules.
+- **The type filter in lesson 6, the graph-wide list in 3b.** The filter is one more condition on a route lesson 6 builds, covered by the `from_id` and `to_id` indexes. Violations can come from any module (plans, chats, notes), so the list of every open one is Synergy's, not one module's. It is a cross-module query like search, so it sits with search and backlinks in 3b: `GET /links?type=`, cursor-paged, with a `(user_id, type)` index. `type` is a filter, not a violations feature, so the same route lists any type (Pratik, 2026-11-01).
 - **User-defined types stay deferred.** Both gaps were closed with a seeded row each, which is all a new type costs.
 
 ## Consequences
 
 - Lesson 6 seeds both types and tests them: a `violates` link never goes stale and never blocks the rule's delete; retyping it to `exception-to` keeps its id, takes a fresh snapshot, runs the cycle check and then blocks the rule's delete; the `type` filter returns only that type.
+- 3b adds `GET /links?type=` and its `(user_id, type)` index, next to search and backlinks.
 - Arkive's datum markers already use both words (the arkive repo's `CLAUDE.md` and `src/lib/datums.mjs`), so the product and the docs that describe it share one vocabulary.
 
 ## Decision History
