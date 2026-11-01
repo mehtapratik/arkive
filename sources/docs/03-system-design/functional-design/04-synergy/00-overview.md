@@ -16,6 +16,8 @@ applies_to:
 
 How Synergy is built. The PRD and [[02-prd/03-features/01-synergy/spec|spec]] say what it does; this page and the decisions it links say where each piece lives and how the pieces meet. Terms follow [[06-decisions/technical/mentions-and-link-lifetime|Mentions and link lifetime]].
 
+Synergy is a graph _pattern_, not a graph _database_. At this scale, plain PostgreSQL tables with recursive queries are enough, and everything goes through Synergy's own repository, which is the one place to change if scale ever calls for a dedicated graph engine.
+
 ## Packages
 
 ![[synergy-packages.svg|700]]
