@@ -51,7 +51,7 @@ A prefix in brackets names the only actors a story applies to. A story without o
 12. **D84** `requirement` #synergy #links: Give a link an optional label that says what the target answers ("Why?"). derived-from [[D69]]
 13. **D85** `requirement` #synergy #links: Give a link an optional type from the starter vocabulary. derived-from [[D69]]
 14. **D86** `requirement` #synergy #links: An untyped link counts as a reference. derived-from [[D69]]
-15. **D87** `requirement` #synergy #links: Associations (`related-to`, `inspired-by`, `next`, `contradicts`, `violates`) never go stale and never block anything. derived-from [[D69]]
+15. **D87** `requirement` #synergy #links: Associations (`related-to`, `inspired-by`, `next`, `contradicts`, `violates`, `defined-by`) never go stale and never block anything. derived-from [[D69]]
 16. **D88** `requirement` #synergy #links: Backlinks show each type by its inverse name ("explains", "source of"). derived-from [[D69]]
 17. **D89** `requirement` #synergy #links: Link the same pair more than once, in the same direction, with different labels. derived-from [[D69]]
 18. **D90** `requirement` #synergy #links: Make a list link: several ordered targets under one label ("Why? guilt, new ideas, perfectionism"). derived-from [[D69]]

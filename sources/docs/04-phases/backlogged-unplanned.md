@@ -31,7 +31,7 @@ These items are known, intentional gaps — deferred, not forgotten.
 **Why it cannot use conventional channels:**
 
 - `DATABASE_URL` connects as `app_runtime` — hard deletes are blocked by the BEFORE DELETE trigger.
-- `DATABASE_DIRECT_URL` is reserved for schema migrations — using it for runtime data operations conflates two distinct concerns.
+- `DATABASE_DIRECT_URL` is reserved for schema migrations and the privileged `packages/ops` scripts (`withPrivilegedDb`). Application runtime code never uses it; it conflates two distinct concerns.
 - `createAdminClient().from(...).delete()` bypasses RLS but not triggers — still rejected.
 
 **What it needs:** A dedicated pathway that opens an explicit transaction, sets `SET LOCAL app.allow_hard_delete = 'true'`, executes targeted DELETEs, and records an audit event.
@@ -63,7 +63,7 @@ These items are known, intentional gaps — deferred, not forgotten.
 
 **What:** Voice dictation with gesture support for punctuation and formatting — accent-friendly, replacing $100+/yr subscription services.
 
-**Why deferred:** Explicitly out of MVP scope per the PRD. Tracked as PM.9 in [[#B9 — Post-MVP]].
+**Why deferred:** Explicitly out of MVP scope per the PRD. Tracked as PM.9 in [[#B9 — Post-MVP: Factory extensions, bots and agents]].
 
 ### B5 — Feature rollout gating
 

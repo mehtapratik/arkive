@@ -76,8 +76,8 @@ Tasks are grouped into **phases**. Each phase is a shippable milestone — by th
 
 - [[04-phases/00-groundwork/00-plan|Phase 0 — Groundwork ✅ COMPLETE]]
 - [[04-phases/01-front-door/00-plan|Phase 1 — Front Door ✅ COMPLETE]]
-- [[04-phases/01-front-door/01-row-level-security/00-plan|Phase 1.1 — Front Door ✅ COMPLETE]]
-- [[04-phases/01-front-door/02-hardening/00-plan|Pre-2 — Front Door ✅ COMPLETE]]
+- [[04-phases/01-front-door/01-row-level-security/00-plan|Phase 1.1 — Front Door: Row-Level Security ✅ COMPLETE]]
+- [[04-phases/01-front-door/02-hardening/00-plan|Pre-2 — Front Door: Hardening ✅ COMPLETE]]
 - [[04-phases/02-gatekeeper/00-plan|Phase 2 — Gatekeeper ✅ COMPLETE]]
 - [[04-phases/03-synergy/00-plan|Phase 3 — Synergy]]
 - [[04-phases/04-taxila/00-plan|Phase 4 — Taxila]]

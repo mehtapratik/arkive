@@ -14,7 +14,7 @@ status: active
 publish: true
 ---
 
-I am working on Project Sidekick to solve the challenges of my current digital setup and workflows. My goal is to build an ERP that runs my life. The motivation here is not the monetization or the mass appeal. Instead, the motivation is purely personal and utilitarian. I covered the journey – and my past failures – in my confessional essay: **[Building in Margins of Reality](/writings/00-margins/)**.
+I am working on Project Sidekick to solve the challenges of my current digital setup and workflows. My goal is to build an ERP that runs my life. The motivation here is not the monetization or the mass appeal. Instead, the motivation is purely personal and utilitarian. I covered the journey – and my past failures – in my confessional essay: **[Building in Margins of Reality](/writings/writings.margins/)**.
 
 > In one sentence, Sidekick is an AI-powered Personal Operating System carefully calibrated to my lifestyle and workflows to help me become a better version of myself.
 
@@ -113,7 +113,8 @@ This makes the MVP of the Sidekick keyboard heavy. And if you don’t know what 
 - Phase 0 \- Done \- Foundation and tooling
 - Phase 1 \- Done \- Supabase and Auth setup
 - Phase 1.1 \- Done (Improvisation of Phase 1 to make bypassing of conventions harder)
-- Phase 2 \- API Guards and Feature Gate System \[Next\]
+- Phase 2 \- Done \- API guards and the feature gate (Gatekeeper)
+- Phase 3 \- \[Next\] \- Synergy; the live status is in the [living plan](/docs/phases/living-plan/)
 
 ---
 

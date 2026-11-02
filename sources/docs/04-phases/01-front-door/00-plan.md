@@ -63,7 +63,7 @@ status: completed
 - **`dotenv-cli` pattern for env loading.** `.env.local` lives at the repo root only. All scripts that need env vars prefix with `dotenv -e ../../.env.local --`. Node.js `--env-file` flag is blocked as a security measure by Node.js itself.
 - **GraphQL + Relay deferred to post-MVP.** REST is sufficient for MVP. Relay + App Router friction is unresolved upstream. `withApiGuard` maps cleanly to REST. Can add GraphQL later without a full rewrite.
 - **API versioning (/api/v1/) deferred to post-MVP.** Current routes are at `/api/`. Versioning adds URL complexity for no current benefit — MVP has one client and breaking changes can be coordinated directly.
-- **`DATABASE_DIRECT_URL` (port 5432) for migrations only; `DATABASE_URL` (port 6543) for runtime.** `DATABASE_DIRECT_URL` is NOT needed in Vercel — migrations run locally, never on Vercel.
+- **`DATABASE_DIRECT_URL` (port 5432) for migrations and `packages/ops` scripts only; `DATABASE_URL` (port 6543) for runtime.** `DATABASE_DIRECT_URL` is NOT needed in Vercel — migrations run locally, never on Vercel.
 - **Supabase renamed keys in 2025.** `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` replaces the old `NEXT_PUBLIC_SUPABASE_ANON_KEY`. `SUPABASE_SECRET_KEY` replaces the old `SUPABASE_SERVICE_ROLE_KEY`.
 
 ---

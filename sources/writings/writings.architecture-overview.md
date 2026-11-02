@@ -18,7 +18,7 @@ publish: true
 
 ## 1. Executive summary
 
-Sidekick will be a modular, API-first **Personal Operating System** designed with multiple types of clients in mind: a Next.js-powered web app, a Progressive Web Application (PWA), and above all, a programmable API platform for agents, automations, workflows, and CLI tooling. The product vision and its modules are defined in the high-level PRD, [Project Sidekick — A Bird's Eye View](/writings/01-sidekick-birds-eye-view/); section 5 of this document maps that vision onto the technical architecture.
+Sidekick will be a modular, API-first **Personal Operating System** designed with multiple types of clients in mind: a Next.js-powered web app, a Progressive Web Application (PWA), and above all, a programmable API platform for agents, automations, workflows, and CLI tooling. The product vision and its modules are defined in the high-level PRD, [Project Sidekick — A Bird's Eye View](/writings/writings.birds-eye-view/); section 5 of this document maps that vision onto the technical architecture.
 
 The application architecture intentionally prioritizes security through enforceable structures, maintainability for a solo developer, incremental scalability, future support for offline capabilities, and API parity across browsers, CLIs, and agents. The system is NOT designed as a hyper-scale enterprise platform from day one. Instead, it is designed to evolve safely without requiring major architectural rewrites.
 
@@ -84,7 +84,7 @@ Layers are enforced by folder and by `pnpm lint`: apps, the registry, features (
 
 ## 5. Product context — the module system
 
-Sidekick's features are **named product modules**, defined in the high-level PRD ([Bird's Eye View](/writings/01-sidekick-birds-eye-view/)). Module names are the canonical vocabulary everywhere: feature slugs, package names, entitlements, and plan phases all use them. Detailed per-module PRDs live under [Docs → Product requirements](/docs/prd/) and are written before each module's implementation begins.
+Sidekick's features are **named product modules**, defined in the high-level PRD ([Bird's Eye View](/writings/writings.birds-eye-view/)). Module names are the canonical vocabulary everywhere: feature slugs, package names, entitlements, and plan phases all use them. Detailed per-module PRDs live under [Docs → Product requirements](/docs/prd/value-proposition/prd.value-proposition.be-the-best-version-of-yourself/) and are written before each module's implementation begins.
 
 ### 5.1 Module → package mapping
 
@@ -190,13 +190,13 @@ Sidekick's AI capabilities must not be coupled to any single LLM provider. A **s
 
 AI responses may blend two source classes: **internal knowledge** (RAG over Taxila/Core Drive) and **live web retrieval**. The response contract must carry per-segment source class — enabling color-coded rendering of sentences by origin — plus footnoted citations to sources.
 
-Architectural implication: AI responses are **structured streams (segments + sources), not plain text streams**. The streaming protocol must be designed with this in mind from the first AI feature, even if web retrieval itself ships later. First consumer: Alter Ego (see its PRD under [Docs → Product requirements](/docs/prd/) once written).
+Architectural implication: AI responses are **structured streams (segments + sources), not plain text streams**. The streaming protocol must be designed with this in mind from the first AI feature, even if web retrieval itself ships later. First consumer: Alter Ego (see its PRD under [Docs → Product requirements](/docs/prd/value-proposition/prd.value-proposition.be-the-best-version-of-yourself/) once written).
 
 ### 5.7 Evolvability — how product changes flow
 
 Requirements will keep evolving as clarity grows. To keep both this document and the plan flexible:
 
-1. **The [PRDs](/docs/prd/) are product truth** — the high-level PRD plus per-feature PRDs written before each feature starts.
+1. **The [PRDs](/docs/prd/mvp/prd.mvp.scope/) are product truth** — the high-level PRD plus per-feature PRDs written before each feature starts.
 2. **This document describes mechanisms and invariants, not feature lists.** Module-level product changes should only ever touch section 5 (this mapping) — never the security, RLS, repository, or offline sections.
 3. Changes flow one way: **PRD → section 5 mapping → living plan phases**.
 
@@ -223,9 +223,9 @@ Requirements will keep evolving as clarity grows. To keep both this document and
 
 ## 7. Security
 
-All routes must use `withAPIGuard()`—direct route handlers are strictly prohibited.
+All routes must use `withApiGuard()`—direct route handlers are strictly prohibited.
 
-Every request must pass through authentication, feature entitlement checks, Row-Level Security (RLS) context setup, and API scope validation before the request is honored. Without `withAPIGuard`, routes begin to drift and security flows become inconsistent or even erroneous over time (e.g., a developer might forget to validate an API scope).
+Every request must pass through authentication, feature entitlement checks, Row-Level Security (RLS) context setup, and API scope validation before the request is honored. Without `withApiGuard`, routes begin to drift and security flows become inconsistent or even erroneous over time (e.g., a developer might forget to validate an API scope).
 
 This is in line with our philosophy of enforced conventions (section 2.2). We make secure behavior easy to implement and difficult to bypass.
 
@@ -329,13 +329,13 @@ By convention, we want to ensure that all queries are executed under the right c
 
 ## 10. API guard
 
-We will use the `withAPIGuard` wrapper to centralize authentication, feature entitlements, RLS, and scope validations.
+We will use the `withApiGuard` wrapper to centralize authentication, feature entitlements, RLS, and scope validations.
 
-### 10.1 How `withAPIGuard` will be implemented?
+### 10.1 How `withApiGuard` will be implemented?
 
 _(Pending implementation details)_
 
-### 10.2 How `withAPIGuard` will be used?
+### 10.2 How `withApiGuard` will be used?
 
 _(Pending implementation details)_
 
@@ -415,19 +415,19 @@ This package-level scoping eliminates schema drift, inconsistent environments, a
 
 ## 16. Background jobs
 
-**For the MVP**, Sidekick will use lightweight async background execution using `waitUntil()`, Vercel background execution, and retry wrappers. Later, this will evolve into Inggest, queues, cron workflows, and distributed workers without changing API contracts.
+**For the MVP**, Sidekick will use lightweight async background execution using `waitUntil()`, Vercel background execution, and retry wrappers. Later, this will evolve into Inngest, queues, cron workflows, and distributed workers without changing API contracts.
 
 ---
 
 ## 17. Observability
 
-At minimum, the MVP will support request logging, failed job logging, API latency logging, and auth failure logging. Logging will be done inside `withAPIGuard()` for centralized visibility.
+At minimum, the MVP will support request logging, failed job logging, API latency logging, and auth failure logging. Logging will be done inside `withApiGuard()` for centralized visibility.
 
 ---
 
 ## 18. Developer rules
 
-1. All API routes must use `withAPIGuard()`.
+1. All API routes must use `withApiGuard()`.
 2. Never set RLS context manually. Use `withRLS()` only.
 3. Never mutate data outside the API layer.
 4. Never import from `apps/*` inside `packages/*`.
@@ -458,7 +458,7 @@ At minimum, the MVP will support request logging, failed job logging, API latenc
 
 ### 19.2 Middleware responsibilities
 
-`proxy.ts` is responsible for session refresh, redirecting unauthenticated users, and excluding API routes from redirect behavior. It must not contain authorization logic, which strictly belongs in `withAPIGuard()`.
+`proxy.ts` is responsible for session refresh, redirecting unauthenticated users, and excluding API routes from redirect behavior. It must not contain authorization logic, which strictly belongs in `withApiGuard()`.
 
 ### 19.3 Mantine setup requirements
 

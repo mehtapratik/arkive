@@ -18,21 +18,22 @@ tags:
 
 pnpm approve-builds exceptions
 
-Two packages in Sidekick need native compilation during install:
+Three packages in Sidekick run install scripts (native compilation or binary download):
 
-1. **`sharp`** — Next.js image optimization. Compiles C++ bindings for fast image processing.
-2. **`unrs-resolver`** — Used internally by ESLint plugins. Also compiles native code.
+1. **`esbuild`**: platform binary used by `tsx` and `tsup`.
+2. **`sharp`**: Next.js image optimization. Compiles C++ bindings for fast image processing.
+3. **`unrs-resolver`**: used internally by ESLint plugins. Also compiles native code.
 
-Both are legitimate, widely-used packages. Approving them is safe.
+All are legitimate, widely-used packages. Approving them is safe. The allowlist is `allowBuilds` in `pnpm-workspace.yaml`:
 
-```shell
-# From the repo root
-pnpm approve-builds
-
-# Follow the interactive prompt — select sharp and unrs-resolver
+```yaml
+allowBuilds:
+   esbuild: true
+   sharp: true
+   unrs-resolver: true
 ```
 
-You may need to run it inside `apps/web` separately if that package has its own local `node_modules` context (pnpm install contexts are per-workspace, and `apps/web` can have a separate context if it was bootstrapped with `create-next-app`).
+Run `pnpm approve-builds` at the repo root to add a new package. The workspace has one install context, so there is nothing to approve inside `apps/web`.
 
 ## Copies
 
