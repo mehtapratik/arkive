@@ -16,7 +16,7 @@ tags:
 
 **What we chose:** `tsup` to compile `packages/eslint-plugin-sidekick` instead of running `tsc` directly.
 
-**Why:** ESLint plugins must be loaded by Node.js at lint time. Node.js cannot load `.ts` files — it needs compiled `.js` (specifically CommonJS format). `tsc` with `moduleResolution: bundler` produces ESM output by default. `tsup` handles the CJS/ESM output format correctly, handles the compilation in one command, and doesn't require a separate tsconfig for the emit target. It is simpler and produces the right output format.
+**Why:** ESLint plugins must be loaded by Node.js at lint time. ESLint cannot load `.ts` files — it needs compiled `.js`. `tsup` compiles the plugin to ESM (the package is `"type": "module"`) with declarations in one command (`tsup src/index.ts --format esm --dts`), and doesn't require a separate tsconfig for the emit target. It is simpler and produces the right output format.
 
 **Note:** This is the only place in the repo that uses `tsup`. All other packages are compiled by their consumers (Next.js, or the test runner).
 

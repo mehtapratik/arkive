@@ -12,21 +12,13 @@ tags:
    - embedding
 ---
 
-## MVP: `console.*` via Vercel dashboard
+## MVP: structured JSON logs via Vercel dashboard
 
-Primitive but sufficient for a single-developer MVP. Vercel streams function logs to a dashboard in real time. `console.error`, `console.warn`, and `console.log` are visible there.
+Primitive but sufficient for a single-developer MVP. Vercel streams function logs to a dashboard in real time. Application code does not call `console.*` (ESLint `no-console` is an error). It calls `logEvent`, which writes one JSON line per typed event (`api.request`, `api.denied`, and so on) to the console, so Vercel shows it. New event types are added to the `LogEvent` union in `packages/core/src/observability/log.ts`.
 
-Log structured objects rather than concatenated strings:
+Log structured objects rather than concatenated strings: they are easier to filter and grep, and will migrate cleanly to a proper logging service later.
 
-```ts
-// Prefer this
-console.error("Embedding failed", { noteId, userId, error: err.message });
-
-// Over this
-console.error("Embedding failed for note " + noteId + ": " + err.message);
-```
-
-Structured logs are easier to filter and grep, and will migrate cleanly to a proper logging service later.
+---
 
 ## Post-MVP: Sentry or equivalent
 

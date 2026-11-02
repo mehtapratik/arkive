@@ -12,8 +12,15 @@ tags:
    - pnpm
 ---
 
-Sidekick to maintain `onlyBuiltDependencies` attribute in root `package.json` to prevent any package to run a rogue script during/after installation.
+Sidekick to maintain an `allowBuilds` allowlist in `pnpm-workspace.yaml` to prevent any package from running a rogue script during or after installation. (pnpm 11 and later ignore the old `onlyBuiltDependencies` field in `package.json`.)
 
-As of this writing, we have two packages that genuinely need script execution post install: `urn-resolver` and `sharp`. Both are legitimate, widely-used packages. Approving them is safe.
+As of this writing, three packages genuinely need script execution after install: `esbuild`, `sharp` and `unrs-resolver`. All are legitimate, widely-used packages, so approving them is safe:
 
-Including `onlyBuildDependencies` in root `package.json` is not enough. Because has `apps/web` with its own install context (i.e. own `node_modules` folder) setup by Next.js. Root approval will not automatically propagate to `apps/web`. Therefore, run `pnpm approve-builds` inside `apps/web` to fix this.
+```yaml
+allowBuilds:
+   esbuild: true
+   sharp: true
+   unrs-resolver: true
+```
+
+The workspace has one install context (the root `node_modules`), so this single allowlist covers `apps/web` too. Run `pnpm approve-builds` at the root when a new package needs approval.

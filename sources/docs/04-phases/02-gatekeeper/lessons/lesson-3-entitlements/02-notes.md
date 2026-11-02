@@ -187,7 +187,7 @@ Pratik guessed sequences were another name for keys and indexes. They aren't. Ke
 
 - **A PR merges the commits it has when you click merge.** arkive#10 merged while a follow-up commit was being pushed, so that commit went to a fresh branch from `main` as arkive#11.
 - **Prettier formats code inside Markdown.** Running it on a walkthrough rewrote the Sidekick TypeScript into the vault's style (3 spaces, double quotes). `--embedded-language-formatting=off` formats the Markdown and leaves the code alone.
-- **Cloudflare Pages builds with Node 22.12**, and `undici` wants 22.19 or later. It's only a warning for now; raise `NODE_VERSION` in the Pages settings.
+- **Cloudflare Pages builds with Node 22.12**, and `undici` wants 22.19 or later. Fixed: Cloudflare reads `.node-version` from the repo, now `24` (see [[04-phases/03-synergy/00-plan|Phase 3 plan]]).
 - **The docs follow the end state.** Fixes found late go into the earlier walkthroughs as dated post notes, so anyone following them ends up where Sidekick is, having done each fix in the phase it belongs to.
 
 ## How the lesson ran

@@ -33,17 +33,21 @@ tags:
 Supabase auth API inserts a row into `auth.users` when user signs up. We will have a trigger setup on `auth.users` table that automatically calls `public.create_profile_for_new_user()` function to insert a corresponding row into `public.profiles` table.
 
 ```sql
-CREATE FUNCTION public.create_profile_for_new_user()
-  RETURNS trigger AS $$
-  BEGIN
-    INSERT INTO public.profiles (id, email, created_at)
-    VALUES (NEW.id, NEW.email, NOW());
+CREATE OR REPLACE FUNCTION public.create_profile_for_new_user()
+  RETURNS trigger
+  LANGUAGE plpgsql
+  SECURITY DEFINER
+  SET search_path = ''
+AS $$
+BEGIN
+  INSERT INTO public.profiles (id, email)
+  VALUES (NEW.id, NEW.email)
+  ON CONFLICT DO NOTHING;
+  RETURN NEW;
+END;
+$$;
 
-    RETURN NEW;
-  END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
-
-CREATE TRIGGER on_auth_user_created
+CREATE OR REPLACE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW
   EXECUTE FUNCTION public.create_profile_for_new_user();

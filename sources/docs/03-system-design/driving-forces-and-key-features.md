@@ -17,4 +17,3 @@ tags:
 4. [[many-clients-and-many-consumers]]
 5. [[api-first]]
 6. [[public-api-only]]
-7. [Google](https://www.google.com)

@@ -56,9 +56,9 @@ WITH CHECK (id::text = current_setting('app.current_user_id', true));
 ```tsx
 export async function withRLS<T>(
    userId: string,
-   fn: (tx: Tx) => Promise<T>,
+   fn: (tx: RlsTx) => Promise<T>,
 ): Promise<T> {
-   return db.transaction(async (tx) => {
+   return getUnsafeDb().transaction(async (tx) => {
       await tx.execute(
          sql`select set_config('app.current_user_id', ${userId}, true)`,
       );
@@ -68,7 +68,7 @@ export async function withRLS<T>(
 ```
 
 1. Always use RLS context helper, `withRLS`, to inject RLS context centrally across all handlers. Never do this inline or any other way.
-2. **Caution**: Do not forget to add `db.transaction` wrapper around`set_config` with `is_local = true`. This will ensure that user id is reset once query is executed. Forgetting this will result in user id setting leaking across entire pooled connection.
+2. **Caution**: Do not forget the transaction wrapper (`getUnsafeDb().transaction`, which only `withRLS` may call) around`set_config` with `is_local = true`. This will ensure that user id is reset once query is executed. Forgetting this will result in user id setting leaking across entire pooled connection.
 
 > [!note] Synergy exception
 > Synergy's own tables keep soft-deleted rows visible and allow restoring them. See [[03-system-design/functional-design/04-synergy/tombstone-visibility|Tombstone visibility]]. The full variant guide is written in Phase 3 lesson 3.

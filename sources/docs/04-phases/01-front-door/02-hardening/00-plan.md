@@ -39,7 +39,7 @@ depends_on:
 | Pre-2.9  | Require `withApiGuard` on route handlers (ESLint); ban other entry points; verify built endpoints from Next.js manifests.                          | 🟡         | ✅     |
 | Pre-2.10 | Choose a portable vault distribution strategy before cloud agents or CI require the external docs symlink.                                         | 🟡         | ✅     |
 | Pre-2.11 | Handle signup without a session by displaying the pending-confirmation state.                                                                      | 🟢         | ✅     |
-| Pre-2.12 | Pre-commit [[prettier-at-repo-level\|Prettier]] on staged files (`husky` + `lint-staged`); `prettier:check` in CI; pin Node 22 locally (`.nvmrc`). | 🟢         | ✅     |
+| Pre-2.12 | Pre-commit [[prettier-at-repo-level\|Prettier]] on staged files (`husky` + `lint-staged`); `prettier:check` in CI; pin Node 24 locally (`.nvmrc`). | 🟢         | ✅     |
 | Pre-2.13 | Protect `main` with a ruleset: changes arrive via branch + PR; the CI `checks` job must pass to merge.                                             | 🟢         | ✅     |
 
 **Pre-2 Exit Criteria:** ✅ All met.
