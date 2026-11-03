@@ -8,6 +8,7 @@ type: grilling
 blocked_by:
    - one-repo-01-cloudflare-pages-for-a-monorepo
    - one-repo-08-where-the-app-lives
+   - one-repo-11-pages-or-workers
 status: open
 assignee:
 tags:
@@ -19,4 +20,4 @@ tags:
 
 ## Question
 
-Once the redesign ships, how does the site move from arkive.blog to ossidekick.com with no broken link? This covers the Pages project and custom domain, `www` to the apex, the arkive.blog 301 rule (path and query kept), `site` in the Astro config (canonical links, sitemap, RSS), how long arkive.blog keeps redirecting, and what is checked before and after.
+Once the redesign ships, how does the site move from arkive.blog to ossidekick.com with no broken link? This covers the Cloudflare project and custom domain, `www` to the apex, the arkive.blog 301 rule (path and query kept), `site` in the Astro config (canonical links, sitemap, RSS), how long arkive.blog keeps redirecting, and what is checked before and after.

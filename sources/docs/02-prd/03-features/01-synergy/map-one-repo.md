@@ -34,14 +34,20 @@ Settled while charting (Pratik, 2026-11-03):
 - **Layout:** `content/docs/` (the vault), `content/writings/`, and the site at `apps/site/`. `AGENTS.md` points into `content/docs/`. Site URLs do not change.
 - **One import PR:** the import commits and Pratik's root config commits (lockfile, `.prettierignore`, the symlink, removing `setup-docs`) share one branch, because the import alone breaks Sidekick's CI.
 - **When:** Lesson 0 runs at the start of 3a, before lesson 1, so lesson 1's `git mv` work and the live recordings happen in the merged repo. Lessons 1 to 13 keep their numbers.
-- **Domain:** ossidekick.com (registered on Cloudflare) serves the public site at the apex. Lesson 0 ends with the current site building from Sidekick on a `*.pages.dev` URL; arkive.blog moves to ossidekick.com once, after the redesign ships, with every path kept.
+- **Domain:** ossidekick.com (registered on Cloudflare) serves the public site at the apex. Lesson 0 ends with the current site building from Sidekick on a Cloudflare preview URL; arkive.blog moves to ossidekick.com once, after the redesign ships, with every path kept.
 - **Name:** Arkive is retired. The site is the Sidekick public site from the design handover.
 - **Formatting:** `content/` stays out of Prettier (142 of 288 vault files fail Sidekick's config today); `apps/site/` keeps its own Prettier config.
 - **Local work first:** the work on Pratik's Mac landed in arkive #37 (principles subfolders with redirects, three value propositions, `CONTEXT.md`); the local CSS edits were discarded.
 
+Resolved tickets:
+
+- [Cloudflare Pages for a Monorepo](tickets/one-repo-01-cloudflare-pages-for-a-monorepo.md): a new Cloudflare project is needed (no repo switch); Node must move to 24; Cloudflare now steers new projects to Workers, which opened a ticket.
+- [The App Under the Same Domain](tickets/one-repo-02-app-under-the-same-domain.md): `app.ossidekick.com` is simplest and what Vercel recommends; `/app` works through a Cloudflare Worker proxy at the cost of Vercel's CDN features and careful redirect handling.
+- [Vercel Skips Content-Only Commits](tickets/one-repo-03-vercel-skips-content-commits.md): Vercel's built-in skip, with `content/` as a workspace package; `turbo query affected` as the fallback.
+
 ## Not yet specified
 
-- How the redesign's pieces (chrome, generated folder pages, search, theme, plates, fonts) split into lessons, and what Pratik learns in each. Clears once the open handover decisions below are settled.
+- How the redesign's pieces (chrome, generated folder pages, search, theme, plates, fonts) split into lessons, and what Pratik learns in each. Clears once the phone breakpoint, milestone tiles and RSS tickets are settled.
 - The repo's licence story for content (MIT code, CC BY-NC 4.0 writings and docs) in one tree.
 - Retiring the old Cloudflare Pages project, archiving the arkive repo, and updating the GitHub homepage field, lesson-start prompts, project memory and the Obsidian vault path.
 - Whether Renovate needs rules for the site's dependencies (Astro majors) beyond the defaults.
