@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Progress strip options</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC:wght@400;700&amp;family=SN+Pro:wght@400..800&amp;display=swap">
+<style>
+body{margin:0}
+@font-face{font-family:"Sentient";src:url("/_blob/1189c655176f44b4dc2e01832736485b") format("woff2");font-weight:200 700;font-style:normal;font-display:swap}
+.sk{font-weight:500;--bg:#f2f5f6;--text:#0d1114;--muted:#545e68;--faint:#7a848c;--rule:#d6dde1;--subtle:#e7ecee;--accent:#2e6e79;--tint:#dde9eb;--surface:#ffffff;--hatch:repeating-linear-gradient(135deg,#d6dde1 0 3px,#e7ecee 3px 6px);--serif:"Sentient",Georgia,serif;--sans:"SN Pro",system-ui,sans-serif;--mono:"LXGW WenKai Mono TC",ui-monospace,monospace;--display:"SN Pro",system-ui,sans-serif;background:var(--bg);color:var(--text);font-family:var(--serif);-webkit-font-smoothing:antialiased}
+.sk[data-theme="dark"]{--bg:#0a0c0f;--text:#e6eaee;--muted:#98a2ad;--faint:#626c77;--rule:#242b33;--subtle:#161b21;--accent:#62d9ec;--tint:#12333a;--hatch:repeating-linear-gradient(135deg,#242b33 0 3px,#161b21 3px 6px)}
+.sk a{color:var(--accent);text-underline-offset:0.18em;text-decoration-thickness:1px}
+.sk .f-done{background:var(--text);color:var(--bg)}
+.sk .f-next{background:var(--accent);color:var(--bg)}
+.sk .f-planned{background:var(--rule);color:var(--muted)}
+.sk .f-deferred{background:var(--hatch);color:var(--muted)}
+.sk .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sk .opt{font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin:0}
+.sk h1,.sk h2,.sk h3{font-family:var(--display)}
+.sk code,.sk pre,.sk kbd,.sk samp{font-family:var(--mono)}
+</style>
+</helmet>
+<div class="sk" data-theme="{{theme}}" style="width: 1280px; min-height: 1300px; box-sizing: border-box; padding: 64px 72px; display: flex; flex-direction: column; gap: 72px">
+
+<section aria-labelledby="a" style="display: flex; flex-direction: column; gap: 18px">
+<p class="opt" id="a">A · Numbered tiles (chosen)</p>
+<h2 style="margin: 0; font-size: 26px; font-weight: 600">Where things stand</h2>
+<ol aria-label="Implementation phases" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{phases}}" as="p" hint-placeholder-count="15">
+<li class="{{p.fill}}" title="{{p.label}}" style="aspect-ratio: 1; border-radius: 8px; display: grid; place-items: center; font-family: var(--mono); font-size: 14px; font-weight: 600"><span aria-hidden="true">{{p.short}}</span><span class="sr">{{p.label}}</span></li>
+</sc-for>
+</ol>
+<p style="margin: 0; font-size: 19px; line-height: 1.5">5 of 15 milestones complete. Up next: <a href="#phase-3">Phase 3 — Graph store and metadata service</a>.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 24px; font-family: var(--sans); font-size: 13px; color: var(--muted)">
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="f-done" style="width: 14px; height: 14px; border-radius: 3px"></span>Complete</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="f-next" style="width: 14px; height: 14px; border-radius: 3px"></span>Up next</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="f-planned" style="width: 14px; height: 14px; border-radius: 3px"></span>Planned</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="f-deferred" style="width: 14px; height: 14px; border-radius: 3px"></span>Deferred (optional)</span>
+</div>
+</section>
+
+<section aria-labelledby="b" style="display: flex; flex-direction: column; gap: 18px">
+<p class="opt" id="b">B · Milestone line</p>
+<h2 style="margin: 0; font-size: 26px; font-weight: 600">Where things stand</h2>
+<ol aria-label="Implementation phases" style="list-style: none; margin: 0; padding: 40px 0 0; display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 0">
+<sc-for list="{{phases}}" as="p" hint-placeholder-count="15">
+<li title="{{p.label}}" style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<span class="{{p.track}}" style="position: absolute; top: 9px; left: 0; right: 0; height: 4px"></span>
+<span class="{{p.fill}}" style="position: relative; width: {{p.dot}}; height: {{p.dot}}; margin-top: {{p.dotOffset}}; border-radius: 999px"></span>
+<span aria-hidden="true" style="font-family: var(--mono); font-size: 12px; color: var(--muted)">{{p.short}}</span>
+<sc-if value="{{p.isNext}}" hint-placeholder-val="{{ false }}">
+<span style="position: absolute; top: -40px; left: 50%; transform: translateX(-12px); white-space: nowrap; font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--accent)">Up next: Graph store and metadata service</span>
+</sc-if>
+<span class="sr">{{p.label}}</span>
+</li>
+</sc-for>
+</ol>
+<p style="margin: 0; font-size: 19px; line-height: 1.5">5 of 15 milestones complete. <a href="#living-plan">Living implementation plan</a></p>
+</section>
+
+<section aria-labelledby="c" style="display: flex; flex-direction: column; gap: 18px">
+<p class="opt" id="c">C · Count and bar</p>
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 24px 56px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<p style="margin: 0; font-size: 96px; line-height: 0.9; font-weight: 500; letter-spacing: -0.03em">5<span style="color: var(--muted); font-size: 48px">/15</span></p>
+<p style="margin: 0; font-family: var(--sans); font-size: 14px; color: var(--muted)">milestones complete</p>
+</div>
+<div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: 10px; padding-bottom: 4px">
+<p style="margin: 0; font-size: 21px; line-height: 1.4">Up next: <a href="#phase-3">Phase 3 — Graph store and metadata service</a></p>
+<div aria-hidden="true" style="display: flex; gap: 3px; height: 14px">
+<span class="f-done" style="flex: 5; border-radius: 4px 0 0 4px"></span>
+<span class="f-next" style="flex: 1"></span>
+<span class="f-planned" style="flex: 7"></span>
+<span class="f-deferred" style="flex: 2; border-radius: 0 4px 4px 0"></span>
+</div>
+<div style="display: flex; gap: 3px; font-family: var(--sans); font-size: 13px; color: var(--muted)">
+<span style="flex: 5">Complete · 0 to 2</span>
+<span style="flex: 1; color: var(--accent); font-weight: 600">3</span>
+<span style="flex: 7">Planned · 4 to 10</span>
+<span style="flex: 2">Optional · 11, 12</span>
+</div>
+</div>
+</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["light","dark"],"default":"light"},"$preview":{"width":1280,"height":1300}}'>
+class Component extends DCLogic {
+renderVals() {
+const raw = [
+['0', '0', 'Foundation and tooling', 'done'],
+['1', '1', 'Supabase and auth shell', 'done'],
+['1.1', '1.1', 'DB-level RLS and soft-delete enforcement', 'done'],
+['Pre-2', 'P2', 'Foundation hardening', 'done'],
+['2', '2', 'Core infrastructure: API guard, feature system', 'done'],
+['3', '3', 'Graph store and metadata service', 'next'],
+['4', '4', 'Taxila v1: knowledge management', 'planned'],
+['5', '5', 'Zinsser v1: writing editor first', 'planned'],
+['6', '6', 'Core Drive AI layer: Alter Ego', 'planned'],
+['7', '7', 'War Room and Factory v1', 'planned'],
+['8', '8', 'PWA and iOS shell', 'planned'],
+['9', '9', 'API keys and CLI', 'planned'],
+['10', '10', 'Observability hardening', 'planned'],
+['11', '11', 'Dogfooding: friends and family access', 'deferred'],
+['12', '12', 'Billing and SaaS readiness', 'deferred']
+];
+const words = { done: 'Complete', next: 'Up next', planned: 'Planned', deferred: 'Deferred (optional)' };
+const phases = raw.map(([num, short, title, s]) => ({
+short, isNext: s === 'next',
+fill: 'f-' + s,
+track: s === 'done' ? 'f-done' : (s === 'deferred' ? 'f-deferred' : 'f-planned'),
+dot: s === 'next' ? '22px' : '14px',
+dotOffset: s === 'next' ? '0px' : '4px',
+label: 'Phase ' + num + ' — ' + title + ': ' + words[s]
+}));
+return { theme: this.props.theme || 'light', phases };
+}
+}
+</script>
+</body>
+</html>

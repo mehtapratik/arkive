@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sidekick home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC:wght@400;700&amp;family=SN+Pro:wght@400..800&amp;display=swap">
+<style>
+body{margin:0}
+@font-face{font-family:"Sentient";src:url("/_blob/1189c655176f44b4dc2e01832736485b") format("woff2");font-weight:200 700;font-style:normal;font-display:swap}
+@font-face{font-family:"Sentient";src:url("/_blob/516637e5361f25e4a0238e25610906f0") format("woff2");font-weight:200 700;font-style:italic;font-display:swap}
+.sk{font-weight:500;--bg:#f2f5f6;--text:#0d1114;--muted:#545e68;--faint:#7a848c;--rule:#d6dde1;--subtle:#e7ecee;--accent:#2e6e79;--tint:#dde9eb;--surface:#ffffff;--serif:"Sentient",Georgia,serif;--sans:"SN Pro",system-ui,sans-serif;--mono:"LXGW WenKai Mono TC",ui-monospace,monospace;--display:"SN Pro",system-ui,sans-serif;background:var(--bg);color:var(--text);font-family:var(--serif);-webkit-font-smoothing:antialiased}
+.sk[data-theme="dark"]{--bg:#0a0c0f;--text:#e6eaee;--muted:#98a2ad;--faint:#626c77;--rule:#242b33;--subtle:#161b21;--accent:#62d9ec;--tint:#12333a;--surface:#0d1116}
+@media (prefers-color-scheme: dark){.sk[data-theme="auto"]{--bg:#0a0c0f;--text:#e6eaee;--muted:#98a2ad;--faint:#626c77;--rule:#242b33;--subtle:#161b21;--accent:#62d9ec;--tint:#12333a;--surface:#0d1116}}
+.sk a{color:var(--accent);text-underline-offset:0.18em;text-decoration-thickness:1px}
+.sk a:hover{text-decoration-thickness:2px}
+.sk a.plain{color:inherit;text-decoration:none}
+.sk a.plain:hover{color:var(--accent)}
+.sk .nav a{color:var(--text);text-decoration:none;padding:10px 0}
+.sk .nav a:hover{color:var(--accent)}
+.sk .nav a[aria-current="page"]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:0.45em}
+.sk .tool{display:inline-flex;align-items:center;gap:8px;height:44px;box-sizing:border-box;padding:0 10px 0 12px;border:1px solid var(--rule);border-radius:10px;color:var(--muted);text-decoration:none;font-family:var(--sans);font-size:14px}
+.sk .tool:hover{color:var(--text);border-color:var(--muted)}
+.sk .seg button{width:38px;height:36px;display:grid;place-items:center;border:0;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;padding:0}
+.sk .seg button:hover{color:var(--text)}
+.sk .seg button[aria-pressed="true"]{background:var(--text);color:var(--bg)}
+.sk kbd{font-family:var(--mono);font-size:12px;line-height:1;border:1px solid var(--rule);border-radius:4px;padding:3px 6px;color:var(--muted)}
+.sk :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sk .btn-primary{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:10px;background:var(--accent);color:var(--bg);text-decoration:none;font-family:var(--sans);font-size:16px;font-weight:600}
+.sk .btn-primary:hover{background:var(--text)}
+.sk .btn-secondary{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:10px;border:1px solid var(--rule);color:var(--text);text-decoration:none;font-family:var(--sans);font-size:16px;font-weight:600;box-sizing:border-box}
+.sk .btn-secondary:hover{border-color:var(--text)}
+.sk .ph-done{background:var(--text);color:var(--bg)}
+.sk .ph-next{background:var(--accent);color:var(--bg)}
+.sk .ph-planned{background:var(--rule);color:var(--muted)}
+.sk .ph-deferred{background:repeating-linear-gradient(135deg,var(--rule) 0 3px,var(--subtle) 3px 6px);color:var(--muted)}
+.sk .tiles li{aspect-ratio:1;border-radius:8px;display:grid;place-items:center;font-family:var(--mono);font-weight:700}
+.sk .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sk details summary{cursor:pointer;font-family:var(--sans);font-size:14px;color:var(--muted)}
+.sk details summary:hover{color:var(--text)}
+.sk h1,.sk h2,.sk h3{font-family:var(--display)}
+.sk code,.sk pre,.sk kbd,.sk samp{font-family:var(--mono)}
+</style>
+</helmet>
+<div class="sk" data-theme="{{theme}}" style="min-height: 100vh">
+
+<header style="border-bottom: 1px solid var(--rule)">
+<div style="max-width: 1180px; margin: 0 auto; padding: 14px 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 40px">
+<a href="Main.dc.html" class="plain" style="font-family: var(--serif); font-size: 26px; font-weight: 700; letter-spacing: -0.015em; line-height: 1">Sidekick</a>
+<nav aria-label="Primary" class="nav" style="display: flex; flex-wrap: wrap; gap: 0 28px; font-family: var(--sans); font-size: 15px; font-weight: 600; flex: 1 1 auto">
+<a href="Writings.dc.html">Writings</a>
+<a href="Docs.dc.html">Docs</a>
+<a href="Writing.dc.html">About</a>
+<a href="#app" style="display: inline-flex; align-items: center; gap: 4px">App<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a>
+</nav>
+<div style="display: flex; align-items: center; gap: 10px">
+<a href="Search.dc.html" class="tool"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><span>Search</span><kbd>/</kbd></a>
+<div class="seg" role="group" aria-label="Color theme" style="display: flex; gap: 2px; padding: 3px; border: 1px solid var(--rule); border-radius: 10px">
+<button type="button" aria-label="Match system" title="Match system" aria-pressed="{{pAuto}}" onClick="{{setAuto}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"></path></svg></button>
+<button type="button" aria-label="Light" title="Light" aria-pressed="{{pLight}}" onClick="{{setLight}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></button>
+<button type="button" aria-label="Dark" title="Dark" aria-pressed="{{pDark}}" onClick="{{setDark}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg></button>
+</div>
+</div>
+</div>
+</header>
+
+<main>
+<section aria-labelledby="hero" style="max-width: 1180px; margin: 0 auto; padding: 72px 32px 72px; box-sizing: border-box; display: flex; flex-wrap: wrap-reverse; align-items: center; gap: 40px 56px">
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+<h1 id="hero" style="margin: 0; font-size: 40px; line-height: 1.15; font-weight: 600; letter-spacing: -0.02em; text-wrap: balance">Sidekick is an AI-powered Personal Operating System.</h1>
+<p style="margin: 0; max-width: 520px; font-size: 20px; line-height: 1.5; color: var(--muted); text-wrap: pretty">Calibrated to my lifestyle and workflows to help me become a better version of myself. Built in the open, written as it happens.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; padding-top: 6px">
+<a href="Writing.dc.html" class="btn-primary">Read the introduction<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a>
+<a href="Docs.dc.html" class="btn-secondary">Browse the docs</a>
+</div>
+</div>
+<figure style="flex: 1 1 380px; min-width: 0; margin: 0; display: flex; flex-direction: column; gap: 10px">
+<dc-import name="Plate" motif="Companion orbit" seed="sidekick" vbw="480" height="300px" radius="6px" hint-size="100%,300px"></dc-import>
+<figcaption style="font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--muted)">Fig. 0 — Sidekick, a companion in orbit</figcaption>
+</figure>
+</section>
+
+<section aria-labelledby="status" style="border-top: 1px solid var(--rule)">
+<div style="max-width: 1180px; margin: 0 auto; padding: 56px 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px">
+<h2 id="status" style="margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.01em">Where things stand</h2>
+<a href="#living-plan" style="font-family: var(--sans); font-size: 15px">Living implementation plan</a>
+</div>
+<p style="margin: 0; font-size: 19px; line-height: 1.5">{{doneCount}} of {{phaseCount}} milestones complete. Up next: <a href="#phase-3">Phase 3 — Graph store and metadata service</a>.</p>
+<ol aria-label="Implementation phases" class="tiles" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(36px, 1fr)); gap: 6px">
+<sc-for list="{{phases}}" as="p" hint-placeholder-count="15">
+<li class="{{p.cls}}" title="{{p.label}}" style="font-size: 15px"><span aria-hidden="true">{{p.short}}</span><span class="sr">{{p.label}}</span></li>
+</sc-for>
+</ol>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 24px; font-family: var(--sans); font-size: 13px; color: var(--muted)">
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="ph-done" style="width: 14px; height: 14px; border-radius: 3px"></span>Complete</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="ph-next" style="width: 14px; height: 14px; border-radius: 3px"></span>Up next</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="ph-planned" style="width: 14px; height: 14px; border-radius: 3px"></span>Planned</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="ph-deferred" style="width: 14px; height: 14px; border-radius: 3px"></span>Deferred (optional)</span>
+</div>
+<details>
+<summary>All phases</summary>
+<ol style="list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 6px 32px; font-family: var(--sans); font-size: 14px">
+<sc-for list="{{phases}}" as="p" hint-placeholder-count="15">
+<li style="display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; border-bottom: 1px solid var(--rule)"><span><span style="font-family: var(--mono); color: var(--muted)">{{p.num}}</span>  {{p.title}}</span><span style="color: var(--muted)">{{p.status}}</span></li>
+</sc-for>
+</ol>
+</details>
+</div>
+</section>
+
+<section aria-label="Recent" style="border-top: 1px solid var(--rule)">
+<div style="max-width: 1180px; margin: 0 auto; padding: 56px 32px 24px; box-sizing: border-box; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(460px, 100%), 1fr)); gap: 48px 64px">
+
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-bottom: 12px">
+<h2 style="margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.01em">Latest writings</h2>
+<a href="Writings.dc.html" style="font-family: var(--sans); font-size: 15px">All writings</a>
+</div>
+<article style="padding: 18px 0; border-top: 1px solid var(--rule); display: flex; flex-direction: column; gap: 6px">
+<h3 style="margin: 0; font-size: 22px; font-weight: 600; line-height: 1.3"><a href="Writing.dc.html" class="plain">Architectural Overview</a></h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: var(--muted)">Sidekick’s architectural overview — an API-first platform tuned for solo developers</p>
+<p style="margin: 0; font-family: var(--sans); font-size: 13px; color: var(--muted); display: flex; gap: 12px"><time style="font-family: var(--mono)" datetime="2026-08-24">2026-08-24</time><span>about 23 min</span></p>
+</article>
+<article style="padding: 18px 0; border-top: 1px solid var(--rule); display: flex; flex-direction: column; gap: 6px">
+<h3 style="margin: 0; font-size: 22px; font-weight: 600; line-height: 1.3"><a href="Writing.dc.html" class="plain">Project Sidekick - A Bird’s Eye View</a></h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: var(--muted)">An introduction to Project Sidekick. What is it? What problem does it solve? Why am I building it?</p>
+<p style="margin: 0; font-family: var(--sans); font-size: 13px; color: var(--muted); display: flex; gap: 12px"><time style="font-family: var(--mono)" datetime="2026-07-19">2026-07-19</time><span>about 11 min</span></p>
+</article>
+<article style="padding: 18px 0; border-top: 1px solid var(--rule); display: flex; flex-direction: column; gap: 6px">
+<h3 style="margin: 0; font-size: 22px; font-weight: 600; line-height: 1.3"><a href="Writing.dc.html" class="plain">Building in the Margins of Reality</a></h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: var(--muted)">Project kick-off post and a confessional essay about my past attempts and their failures. Why start now? What do I hope to achieve?</p>
+<p style="margin: 0; font-family: var(--sans); font-size: 13px; color: var(--muted); display: flex; gap: 12px"><time style="font-family: var(--mono)" datetime="2026-07-10">2026-07-10</time><span>about 4 min</span></p>
+</article>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-bottom: 12px">
+<h2 style="margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.01em">Recently updated docs</h2>
+<a href="Docs.dc.html" style="font-family: var(--sans); font-size: 15px">All docs</a>
+</div>
+<sc-for list="{{recentDocs}}" as="d" hint-placeholder-count="6">
+<article style="padding: 14px 0; border-top: 1px solid var(--rule); display: flex; flex-direction: column; gap: 4px">
+<h3 style="margin: 0; font-size: 19px; font-weight: 600; line-height: 1.35"><a href="Doc.dc.html" class="plain">{{d.title}}</a></h3>
+<p style="margin: 0; font-family: var(--sans); font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px"><span>{{d.path}}</span><span>{{d.kind}}</span><time style="font-family: var(--mono)">{{d.date}}</time></p>
+</article>
+</sc-for>
+</div>
+
+</div>
+</section>
+</main>
+
+<footer style="border-top: 1px solid var(--rule); margin-top: 72px">
+<div style="max-width: 1180px; margin: 0 auto; padding: 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 32px; font-family: var(--sans); font-size: 14px; color: var(--muted)">
+<span style="font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--text)">Sidekick</span>
+<span>Built in the open. Writings and docs licensed CC BY-NC 4.0.</span>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["auto","light","dark"],"default":"light"},"$preview":{"width":1280,"height":2020}}'>
+class Component extends DCLogic {
+renderVals() {
+const t = (this.state && this.state.theme) || this.props.theme || 'light';
+const raw = [
+['0', 'Foundation and tooling', 'done'],
+['1', 'Supabase and auth shell', 'done'],
+['1.1', 'DB-level RLS and soft-delete enforcement', 'done'],
+['Pre-2', 'Foundation hardening', 'done'],
+['2', 'Core infrastructure: API guard, feature system', 'done'],
+['3', 'Graph store and metadata service', 'next'],
+['4', 'Taxila v1: knowledge management', 'planned'],
+['5', 'Zinsser v1: writing editor first', 'planned'],
+['6', 'Core Drive AI layer: Alter Ego', 'planned'],
+['7', 'War Room and Factory v1', 'planned'],
+['8', 'PWA and iOS shell', 'planned'],
+['9', 'API keys and CLI', 'planned'],
+['10', 'Observability hardening', 'planned'],
+['11', 'Dogfooding: friends and family access', 'deferred'],
+['12', 'Billing and SaaS readiness', 'deferred']
+];
+const words = { done: 'Complete', next: 'Up next', planned: 'Planned', deferred: 'Deferred (optional)' };
+const phases = raw.map(([num, title, s]) => ({ num, title, short: num === 'Pre-2' ? 'P2' : num, status: words[s], cls: 'ph-' + s, label: 'Phase ' + num + ' — ' + title + ': ' + words[s] }));
+return {
+theme: t,
+pAuto: String(t === 'auto'), pLight: String(t === 'light'), pDark: String(t === 'dark'),
+setAuto: () => this.setState({ theme: 'auto' }),
+setLight: () => this.setState({ theme: 'light' }),
+setDark: () => this.setState({ theme: 'dark' }),
+phases,
+phaseCount: phases.length,
+doneCount: raw.filter((r) => r[2] === 'done').length,
+recentDocs: [
+{ title: 'Remember everything', path: 'PRD › Value proposition', kind: 'prd', date: '2026-10-31' },
+{ title: 'Exponential Evolution', path: 'PRD › Value proposition', kind: 'prd', date: '2026-10-31' },
+{ title: 'Build mind palace', path: 'PRD › Value proposition', kind: 'prd', date: '2026-10-31' },
+{ title: 'Cost to Add Later', path: 'Principles › Sidekick', kind: 'guidance', date: '2026-10-29' },
+{ title: 'Synergy - Feature Specifications', path: 'PRD › Features › Synergy', kind: 'prd', date: '2026-10-28' },
+{ title: 'Scope and Phases', path: 'PRD › Features › Synergy', kind: 'prd', date: '2026-10-27' }
+]
+};
+}
+}
+</script>
+</body>
+</html>

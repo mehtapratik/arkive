@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>No utility styles (doc page)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC:wght@400;700&amp;family=SN+Pro:wght@400..800&amp;display=swap">
+<style>
+body{margin:0}
+@font-face{font-family:"Sentient";src:url("/_blob/1189c655176f44b4dc2e01832736485b") format("woff2");font-weight:200 700;font-style:normal;font-display:swap}
+@font-face{font-family:"Sentient";src:url("/_blob/516637e5361f25e4a0238e25610906f0") format("woff2");font-weight:200 700;font-style:italic;font-display:swap}
+.sk{font-weight:500;--bg:#f2f5f6;--text:#0d1114;--muted:#545e68;--faint:#7a848c;--rule:#d6dde1;--subtle:#e7ecee;--accent:#2e6e79;--tint:#dde9eb;--surface:#ffffff;--serif:"Sentient",Georgia,serif;--sans:"SN Pro",system-ui,sans-serif;--mono:"LXGW WenKai Mono TC",ui-monospace,monospace;--display:"SN Pro",system-ui,sans-serif;background:var(--bg);color:var(--text);font-family:var(--serif);-webkit-font-smoothing:antialiased}
+.sk[data-theme="dark"]{--bg:#0a0c0f;--text:#e6eaee;--muted:#98a2ad;--faint:#626c77;--rule:#242b33;--subtle:#161b21;--accent:#62d9ec;--tint:#12333a;--surface:#0d1116}
+@media (prefers-color-scheme: dark){.sk[data-theme="auto"]{--bg:#0a0c0f;--text:#e6eaee;--muted:#98a2ad;--faint:#626c77;--rule:#242b33;--subtle:#161b21;--accent:#62d9ec;--tint:#12333a;--surface:#0d1116}}
+.sk a{color:var(--accent);text-underline-offset:0.18em;text-decoration-thickness:1px}
+.sk a:hover{text-decoration-thickness:2px}
+.sk a.plain{color:inherit;text-decoration:none}
+.sk a.plain:hover{color:var(--accent)}
+.sk .nav a{color:var(--text);text-decoration:none;padding:10px 0}
+.sk .nav a:hover{color:var(--accent)}
+.sk .nav a[aria-current="page"]{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:0.45em}
+.sk .tool{display:inline-flex;align-items:center;gap:8px;height:44px;box-sizing:border-box;padding:0 10px 0 12px;border:1px solid var(--rule);border-radius:10px;color:var(--muted);text-decoration:none;font-family:var(--sans);font-size:14px}
+.sk .tool:hover{color:var(--text);border-color:var(--muted)}
+.sk .seg button{width:38px;height:36px;display:grid;place-items:center;border:0;border-radius:7px;background:transparent;color:var(--muted);cursor:pointer;padding:0}
+.sk .seg button:hover{color:var(--text)}
+.sk .seg button[aria-pressed="true"]{background:var(--text);color:var(--bg)}
+.sk kbd{font-family:var(--mono);font-size:12px;line-height:1;border:1px solid var(--rule);border-radius:4px;padding:3px 6px;color:var(--muted)}
+.sk :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sk .tree ul{list-style:none;margin:0;padding:0}
+.sk .tree ul ul{margin:2px 0 6px 13px;padding-left:8px;border-left:1px solid var(--rule)}
+.sk .tree a{display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:6px;color:var(--muted);text-decoration:none;font-family:var(--sans);font-size:14px;line-height:1.35}
+.sk .tree a:hover{color:var(--text);background:var(--subtle)}
+.sk .tree a[aria-current="page"]{color:var(--text);background:var(--tint);font-weight:600}
+.sk .tree a.open{color:var(--text)}
+.sk .tree .n{margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.sk .tree svg{flex:none}
+.sk .crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 14px;padding:0;list-style:none;font-family:var(--sans);font-size:14px;color:var(--muted)}
+.sk .crumbs a{color:var(--muted);text-decoration:none}
+.sk .crumbs a:hover{color:var(--accent);text-decoration:underline}
+.sk .meta th{text-align:left;font-weight:600;color:var(--muted);padding:6px 24px 6px 0;vertical-align:top;white-space:nowrap}
+.sk .meta td{padding:6px 0;vertical-align:top}
+.sk .meta tr{border-bottom:1px solid var(--rule)}
+.sk .chip{display:inline-block;padding:2px 9px;border-radius:999px;background:var(--subtle);border:1px solid var(--rule);font-size:12.5px;color:var(--muted)}
+.sk a.chip{text-decoration:none}
+.sk a.chip:hover{color:var(--accent)}
+.sk .status{display:inline-flex;align-items:center;gap:6px}
+.sk .prose{font-size:19px;line-height:1.65}
+.sk .prose p{margin:0 0 1.1em;text-wrap:pretty}
+.sk .prose code{font-family:var(--mono);font-size:0.82em;background:var(--subtle);border:1px solid var(--rule);border-radius:4px;padding:1px 5px}
+.sk h1,.sk h2,.sk h3{font-family:var(--display)}
+.sk code,.sk pre,.sk kbd,.sk samp{font-family:var(--mono)}
+</style>
+</helmet>
+<div class="sk" data-theme="{{theme}}" style="min-height: 100vh">
+
+<header style="border-bottom: 1px solid var(--rule)">
+<div style="max-width: 1180px; margin: 0 auto; padding: 14px 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 40px">
+<a href="Main.dc.html" class="plain" style="font-family: var(--serif); font-size: 26px; font-weight: 700; letter-spacing: -0.015em; line-height: 1">Sidekick</a>
+<nav aria-label="Primary" class="nav" style="display: flex; flex-wrap: wrap; gap: 0 28px; font-family: var(--sans); font-size: 15px; font-weight: 600; flex: 1 1 auto">
+<a href="Writings.dc.html">Writings</a>
+<a href="Docs.dc.html" aria-current="page">Docs</a>
+<a href="Writing.dc.html">About</a>
+<a href="#app" style="display: inline-flex; align-items: center; gap: 4px">App<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a>
+</nav>
+<div style="display: flex; align-items: center; gap: 10px">
+<a href="Search.dc.html" class="tool"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><span>Search</span><kbd>/</kbd></a>
+<div class="seg" role="group" aria-label="Color theme" style="display: flex; gap: 2px; padding: 3px; border: 1px solid var(--rule); border-radius: 10px">
+<button type="button" aria-label="Match system" title="Match system" aria-pressed="{{pAuto}}" onClick="{{setAuto}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"></path></svg></button>
+<button type="button" aria-label="Light" title="Light" aria-pressed="{{pLight}}" onClick="{{setLight}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></button>
+<button type="button" aria-label="Dark" title="Dark" aria-pressed="{{pDark}}" onClick="{{setDark}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg></button>
+</div>
+</div>
+</div>
+</header>
+
+<div style="max-width: 1180px; margin: 0 auto; padding: 48px 32px 0; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 40px 56px">
+
+<aside aria-label="Docs contents" class="tree" style="flex: 1 1 240px; max-width: 272px">
+<p style="margin: 0 0 10px 8px; font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase"><a href="Docs.dc.html" class="plain" style="color: var(--muted)">Docs</a></p>
+<ul>
+<li><a href="DocFolder.dc.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>Principles<span class="n">10</span></a></li>
+<li><a href="DocFolder.dc.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>Motivations<span class="n">5</span></a></li>
+<li><a href="DocFolder.dc.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>PRD<span class="n">47</span></a></li>
+<li><a href="DocFolder.dc.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>System Design<span class="n">94</span></a></li>
+<li><a href="DocFolder.dc.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>Plans<span class="n">49</span></a></li>
+<li><a href="DocFolder.dc.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>Builds<span class="n">16</span></a></li>
+<li><a href="DocFolder.dc.html" class="open"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>Decisions<span class="n">24</span></a>
+<ul>
+<li><a href="DocFolder.dc.html" class="open"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>Technical<span class="n">24</span></a>
+<ul>
+<sc-for list="{{siblings}}" as="d" hint-placeholder-count="24">
+<li><a href="Doc.dc.html" aria-current="{{d.current}}">{{d.title}}</a></li>
+</sc-for>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="DocFolder.dc.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>Glossary<span class="n">6</span></a></li>
+<li><a href="DocFolder.dc.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"></path></svg>AI Coding Harness<span class="n">8</span></a></li>
+</ul>
+</aside>
+
+<main style="flex: 999 1 560px; min-width: 0">
+<article style="max-width: 700px">
+<nav aria-label="Breadcrumb"><ol class="crumbs">
+<li><a href="Docs.dc.html">Docs</a></li>
+<li aria-hidden="true">›</li>
+<li><a href="DocFolder.dc.html">Decisions</a></li>
+<li aria-hidden="true">›</li>
+<li><a href="DocFolder.dc.html">Technical</a></li>
+</ol></nav>
+<div style="margin: 4px 0 28px"><dc-import name="Plate" motif="Bifurcation" seed="decision.technical.no-utility-styles" height="160px" hint-size="100%,160px"></dc-import></div>
+<h1 style="margin: 0 0 28px; font-size: 44px; line-height: 1.12; font-weight: 500; letter-spacing: -0.02em">No utility styles</h1>
+
+<table class="meta" style="width: 100%; border-collapse: collapse; margin: 0 0 40px; font-family: var(--sans); font-size: 14px; border-top: 1px solid var(--rule)">
+<tbody>
+<tr><th scope="row">As of</th><td><time datetime="2026-09-19" style="font-family: var(--mono)">2026-09-19</time></td></tr>
+<tr><th scope="row">Version</th><td style="font-family: var(--mono)">1.0.0</td></tr>
+<tr><th scope="row">Kind</th><td>decision</td></tr>
+<tr><th scope="row">Status</th><td><span class="status"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>accepted</span></td></tr>
+<tr><th scope="row">Length</th><td>122 words, about 1 min</td></tr>
+<tr><th scope="row">Tags</th><td><span style="display: flex; flex-wrap: wrap; gap: 6px"><a href="Tag.dc.html" class="chip">decision</a><a href="Tag.dc.html" class="chip">technical</a><a href="Tag.dc.html" class="chip">architecture-decision</a><a href="Tag.dc.html" class="chip">eslint</a><a href="Tag.dc.html" class="chip">mantine</a><a href="Tag.dc.html" class="chip">css</a></span></td></tr>
+</tbody>
+</table>
+
+<div class="prose">
+<p><strong>What we chose:</strong> CSS modules for all styling. Utilitarian styling alternatives like Mantine CSS props ( like <code>h</code>, <code>px</code>, <code>fw</code>, <code>c</code>, <code>mt</code>, <code>size</code>, <code>color</code>, <code>justify</code>, <code>gap</code>) or Tailwind CSS aren’t allowed. No Mantine style props.</p>
+<p><strong>Why:</strong> They bypass the CSS cascade, cannot be overridden by CSS modules, and make it impossible to have a consistent visual language without reading every component's props. CSS modules make styles explicit and co-located with the component.</p>
+<p><strong>What is allowed:</strong> Mantine behavioral props — props that configure component behavior, not visual style. Examples: <code>withBorder</code>, <code>shadow</code>, <code>{{navbarExample}}</code>. These configure Mantine's layout engine, not inline styles.</p>
+<p><strong>Enforcement:</strong> <code>packages/eslint-plugin-sidekick</code> contains the <code>no-mantine-style-props</code> rule. It is registered in the root <code>eslint.config.js</code> and fails lint immediately on any violation.</p>
+</div>
+
+<nav aria-label="In this folder" style="margin-top: 56px; border-top: 1px solid var(--rule); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 16px 32px; padding-top: 24px">
+<a href="Doc.dc.html" class="plain" style="display: flex; flex-direction: column; gap: 4px; padding: 8px 0"><span style="font-family: var(--sans); font-size: 13px; color: var(--muted)">Previous in Technical</span><span style="font-size: 19px; line-height: 1.35">No API versioning</span></a>
+<a href="Doc.dc.html" class="plain" style="display: flex; flex-direction: column; gap: 4px; padding: 8px 0; text-align: right"><span style="font-family: var(--sans); font-size: 13px; color: var(--muted)">Next in Technical</span><span style="font-size: 19px; line-height: 1.35">One interface for every consumer</span></a>
+</nav>
+</article>
+</main>
+</div>
+
+<footer style="border-top: 1px solid var(--rule); margin-top: 96px">
+<div style="max-width: 1180px; margin: 0 auto; padding: 32px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 32px; font-family: var(--sans); font-size: 14px; color: var(--muted)">
+<span style="font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--text)">Sidekick</span>
+<span>Built in the open. Writings and docs licensed CC BY-NC 4.0.</span>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["auto","light","dark"],"default":"light"},"$preview":{"width":1280,"height":1600}}'>
+class Component extends DCLogic {
+renderVals() {
+const t = (this.state && this.state.theme) || this.props.theme || 'light';
+const titles = [
+'App runtime role for Drizzle', 'Centralized copy', 'dotenv-cli', 'Edge runtime', 'Env vars in turbo.json',
+'ESLint best practice rules', 'ESLint rules to use tsup', 'Flat config', 'Force dynamic', 'GraphQL Relay',
+'Module resolution: bundler', 'No API versioning', 'No utility styles', 'One interface for every consumer',
+'Runtime validations', 'Shared tsconfig', 'Stay on ESLint, revisit oxlint', 'TypeScript hoisting', 'Use Corepack',
+'User profile creation by DB trigger', 'Vercel', 'Vitest', 'Why Prettier at repo level?', 'Why Turborepo'
+];
+const siblings = titles.map((title) => ({ title, current: title === 'No utility styles' ? 'page' : 'false' }));
+return {
+theme: t,
+pAuto: String(t === 'auto'), pLight: String(t === 'light'), pDark: String(t === 'dark'),
+setAuto: () => this.setState({ theme: 'auto' }),
+setLight: () => this.setState({ theme: 'light' }),
+setDark: () => this.setState({ theme: 'dark' }),
+siblings,
+navbarExample: 'navbar=' + '{' + '{ width, breakpoint }' + '}'
+};
+}
+}
+</script>
+</body>
+</html>

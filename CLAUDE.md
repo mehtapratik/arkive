@@ -4,6 +4,10 @@ The design handover (SPEC, house rules, reference pages) was removed from the tr
 history (`git show c91121d:design/SPEC.md`, likewise `design/AGENTS.md`, `design/reference/`). This file
 keeps the rules that still bind and what is not obvious from the code.
 
+The **new** handover, for the Sidekick public site that replaces arkive.blog, is in `design/` (`HANDOVER.md`,
+`tokens.css`, `plates.mjs`, `reference/`), with its vocabulary in `CONTEXT.md`. Its house-rule changes apply only
+once the redesign starts; until then the rules below hold.
+
 ## House rules
 
 - No CSS framework, no UI framework, no third-party requests. Fonts and icons are self-hosted.
