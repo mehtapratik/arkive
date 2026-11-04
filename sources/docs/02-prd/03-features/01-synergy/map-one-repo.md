@@ -15,7 +15,7 @@ tags:
 
 ## Destination
 
-A PRD, `prd.features.synergy.one-repo.md` plus its section of [[02-prd/03-features/01-synergy/spec|the spec]], for one repo and one domain: Arkive's docs, writings and site move into `mehtapratik/sidekick`, and the site becomes the Sidekick public site at ossidekick.com. The Phase 3 plan gains **Lesson 0: One repo** and the lessons that build the new site. Planning only: nothing is built inside this map.
+This map ends in a PRD for one repo and one domain: a new page, `prd.features.synergy.one-repo.md`, and a one-repo section in [[02-prd/03-features/01-synergy/spec|the Synergy spec]]. The PRD says what moves and why: Arkive's docs, writings and site move into the `mehtapratik/sidekick` repo, and the site is rebuilt as the Sidekick public site at ossidekick.com. The Phase 3 plan also gains **Lesson 0: One repo** and the lessons that build the new site. This map only plans; nothing gets built while it is open.
 
 ## Notes
 
