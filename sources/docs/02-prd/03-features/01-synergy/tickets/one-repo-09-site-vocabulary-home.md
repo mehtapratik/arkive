@@ -17,4 +17,4 @@ tags:
 
 ## Question
 
-The site's terms (Sidekick, App, Public site, Entry, Writing, Doc, About) live in `CONTEXT.md`, the file the `domain-modeling` skill reads. The project's settled terms live in `07-glossary/`. In the merged repo, does `CONTEXT.md` stay at the root as the glossary agents read, move to `apps/site/`, or fold into `07-glossary/`?
+The site's terms (Sidekick, App, Public site, Entry, Writing, Doc, About) live in `CONTEXT.md`, the file the `domain-modeling` skill reads. The project's settled terms live in `07-glossary/`. In the merged repo, does `CONTEXT.md` stay at the root as the glossary agents read, move to `apps/www/`, or fold into `07-glossary/`?

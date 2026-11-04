@@ -21,7 +21,7 @@ This map ends in a PRD for one repo and one domain: a new page, `prd.features.sy
 
 Today Sidekick's code and its docs live in two repos, joined by a `docs` symlink and an install script that clones Arkive. Every change that touches code and the docs that describe it takes two PRs. One repo puts docs, writings, the AI harness, source code and other artifacts side by side, and one domain gives the project one public face.
 
-- **Who builds:** Pratik types every change, in `content/` and `apps/site/` as much as in the root config, so he knows what Sidekick's configuration gained. The coach explains and never edits the implementation.
+- **Who builds:** Pratik types every change, in `content/` and `apps/www/` as much as in the root config, so he knows what Sidekick's configuration gained. The coach explains and never edits the implementation.
 - **The new site:** the design handover for the Sidekick public site is a throwaway prototype, never committed. Read it from the project's shared files (`one-repo/design/HANDOVER.md`, `tokens.css`, `plates.mjs`, `reference/`). Where it and this map disagree, this map wins. **Open item (Pratik, 2026-11-04):** a revised design is in progress elsewhere. Layout and design elements stay the same, while typeface, colours and the generated art script change to feel playful, carefree and teenage. Pratik hands it over when it is ready. It changes tokens, fonts and `plates.mjs`, not the implementation plan, so the map and lessons do not wait for it. Its vocabulary is in `CONTEXT.md` at the repo root (Sidekick, App, Public site, Entry, Writing, Doc, About).
 - **Workflow:** `wayfinder`, then `grill-with-docs`, then `to-spec`, as for [[02-prd/03-features/01-synergy/map|the Synergy map]]. Grilling tickets consult the `grilling` and `domain-modeling` skills; research tickets use `research`. Tickets live in `tickets/` as `one-repo-NN-<slug>.md` with `type`, `blocked_by`, `status` and `assignee` in frontmatter. A session claims a ticket by setting `assignee` before any work. Once the PRD and spec absorb the outcome, this map and its tickets are retired.
 
@@ -31,12 +31,13 @@ Settled while charting (Pratik, 2026-11-03):
 
 - **Surviving repo:** `mehtapratik/sidekick`. Arkive's full history (123 commits) comes with it, and `mehtapratik/arkive` is archived, not deleted, so its PR links keep working.
 - **History onto `main`:** the import PR merges as a one-off merge commit, because a squash would flatten Arkive's history. Merge commits are switched on for that PR only.
-- **Layout:** `content/docs/` (the vault), `content/writings/`, and the site at `apps/site/`. `AGENTS.md` points into `content/docs/`. Site URLs do not change.
+- **Layout:** `content/docs/` (the vault), `content/writings/`, and the site at `apps/www/`. `AGENTS.md` points into `content/docs/`. Site URLs do not change.
+- **App folders** (2026-11-04): the public site is `apps/www` and the App's `apps/web` is renamed `apps/app`, so each folder is named for the address it serves (ossidekick.com and app.ossidekick.com). `apps/` and `packages/` stay as the parent folders.
 - **One import PR:** the import commits and Pratik's root config commits (lockfile, `.prettierignore`, the symlink, removing `setup-docs`) share one branch, because the import alone breaks Sidekick's CI.
 - **When:** Lesson 0 runs at the start of 3a, before lesson 1, so lesson 1's `git mv` work and the live recordings happen in the merged repo. Lessons 1 to 13 keep their numbers.
 - **Domain:** ossidekick.com (registered on Cloudflare) serves the public site at the apex. Lesson 0 ends with the current site building from Sidekick on a Cloudflare preview URL; arkive.blog moves to ossidekick.com once, after the redesign ships, with every path kept.
 - **Name:** Arkive is retired. The site is the Sidekick public site from the design handover.
-- **Formatting:** `content/` stays out of Prettier (142 of 288 vault files fail Sidekick's config today); `apps/site/` keeps its own Prettier config.
+- **Formatting:** `content/` stays out of Prettier (142 of 288 vault files fail Sidekick's config today); `apps/www/` keeps its own Prettier config.
 - **Local work first:** the work on Pratik's Mac landed in arkive #37 (principles subfolders with redirects, three value propositions, `CONTEXT.md`); the local CSS edits were discarded.
 
 Resolved tickets:
