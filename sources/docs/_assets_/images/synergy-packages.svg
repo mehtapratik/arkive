@@ -77,7 +77,7 @@
     <tspan x="377.5" dy="20">(assembles registrations)</tspan>
   </text>
   <text x="220" y="466" font-family="Virgil, Segoe UI Emoji, Helvetica, Arial, sans-serif" font-size="16" fill="#495057" text-anchor="middle">
-    <tspan x="220" dy="0">packages/ops</tspan>
+    <tspan x="220" dy="0">packages/features/_sandbox</tspan>
     <tspan x="220" dy="20">(mock notes and tasks)</tspan>
   </text>
   <text x="567.5" y="466" font-family="Virgil, Segoe UI Emoji, Helvetica, Arial, sans-serif" font-size="16" fill="#495057" text-anchor="middle">
