@@ -3,9 +3,9 @@ publish: true
 title: Living Implementation Plan
 id: plan.living
 created: 2026-09-19
-updated: 2026-11-06
+updated: 2026-11-01
 kind: plan
-version: 1.0.4
+version: 1.0.3
 tags:
    - plan
    - living-plan
@@ -35,7 +35,7 @@ Product truth lives in `02-prd/` (the high-level PRD plus per-feature PRDs writt
 | _(infrastructure)_ | 0, 1, 1.1, 2, 3                            | Product-agnostic: monorepo, auth, RLS, API guard, Synergy                    |
 | Taxila             | 4                                          | Absorbs "Notes" and "Bookmarks" (bookmark = knowledge source of type `link`) |
 | Zinsser            | 5 (editor), post-6 (AI coach)              | Editor first; coach depends on AI layer                                      |
-| Core Drive         | 6                                          | Separate feature for now; may fold into Taxila later (see [[03-system-design/functional-design/01-core-drive/02-may-become-part-of-taxila\|May Become Part of Taxila]]) |
+| Core Drive         | 6                                          | Separate feature for now; may fold into Taxila later (see architecture §5.2) |
 | Alter Ego          | 6                                          | Grounded in Core Drive + Taxila RAG                                          |
 | War Room           | 7                                          | Tasks / planning entity                                                      |
 | Factory            | 7 (push-button workflows), post-MVP (rest) | MVP scope per PRD: push-button workflows + input defaults                    |
@@ -44,7 +44,7 @@ Product truth lives in `02-prd/` (the high-level PRD plus per-feature PRDs writt
 **Changelog**
 
 - **2026-11-01** — Phases renamed by brand, shown as the doc title: 0 Groundwork, 1 Front Door (with 1.1 Row-Level Security and Pre-2 Hardening), 2 Gatekeeper, 3 Synergy, 4 Taxila, 5 Zinsser, 6 Alter Ego, 7 War Room, 8 Pocket, 9 Terminal, 10 Watchtower, 11 Open House, 12 Storefront. File names and phase numbers are unchanged.
-- **2026-08-24** — Core Drive redesigned as a system-wide **tiered context model** (kernel / applicability-loaded / situational state) with a centralized **Context Assembler** and first-class **Effort Level** in the AI request contract ([[03-system-design/functional-design/01-core-drive/00-tiered-context-model|tiered context model]]). Domain knowledge assigned to Taxila; state/values boundary between Core Drive and War Room/Factory made explicit. Phase 6A/6B/7A tasks updated.
+- **2026-08-24** — Core Drive redesigned as a system-wide **tiered context model** (kernel / applicability-loaded / situational state) with a centralized **Context Assembler** and first-class **Effort Level** in the AI request contract (architecture §5.2). Domain knowledge assigned to Taxila; state/values boundary between Core Drive and War Room/Factory made explicit. Phase 6A/6B/7A tasks updated.
 - **2026-07-27** — Realigned the entire plan to the bird's-eye-view essay (high-level PRD). Adopted module names; rejected Bookmarks/Recipes/Budget as standalone features; added the graph store and metadata service (now Synergy), Core Drive, command-palette shell, and provider-agnostic AI router; moved dogfooding/billing to optional tail. Phases 0–2 unchanged.
 
 ---
@@ -76,8 +76,8 @@ Tasks are grouped into **phases**. Each phase is a shippable milestone — by th
 
 - [[04-phases/00-groundwork/00-plan|Phase 0 — Groundwork ✅ COMPLETE]]
 - [[04-phases/01-front-door/00-plan|Phase 1 — Front Door ✅ COMPLETE]]
-- [[04-phases/01-front-door/01-row-level-security/00-plan|Phase 1.1 — Row-Level Security ✅ COMPLETE]]
-- [[04-phases/01-front-door/02-hardening/00-plan|Pre-2 — Hardening ✅ COMPLETE]]
+- [[04-phases/01-front-door/01-row-level-security/00-plan|Phase 1.1 — Front Door ✅ COMPLETE]]
+- [[04-phases/01-front-door/02-hardening/00-plan|Pre-2 — Front Door ✅ COMPLETE]]
 - [[04-phases/02-gatekeeper/00-plan|Phase 2 — Gatekeeper ✅ COMPLETE]]
 - [[04-phases/03-synergy/00-plan|Phase 3 — Synergy]]
 - [[04-phases/04-taxila/00-plan|Phase 4 — Taxila]]
